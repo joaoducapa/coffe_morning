@@ -11,6 +11,7 @@
             color: #4B2E2B;
             margin: 0;
             padding: 0;
+            font-size: 18px;
         }
 
         header {
@@ -43,6 +44,7 @@
             margin-top: 10px;
             text-decoration: none;
             display: inline-block;
+            font-size: 16px;
         }
 
         button:hover, .botao-pedido:hover {
@@ -77,42 +79,42 @@
             border-left: 5px solid #B47B4E;
             margin-bottom: 10px;
         }
+
+        #cardapio {
+            display: none;
+            margin-top: 20px;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+        }
+
+        img {
+            margin: 10px;
+            border-radius: 8px;
+        }
     </style>
     <script>
-        function calculateTotal() {
-            const items = document.querySelectorAll('.item');
-            let total = 0;
-            items.forEach(item => {
-                const price = parseFloat(item.dataset.price);
-                if (item.querySelector('input').checked) {
-                    total += price;
-                }
-            });
-            alert("Total do pedido: R$ " + total.toFixed(2));
-        }
-
-        function toggleFAQ() {
-            const faqList = document.getElementById('faqList');
-            const faqButton = document.getElementById('faqButton');
-            if (faqList.style.display === "none") {
-                faqList.style.display = "block";
-                faqButton.textContent = "Esconder Perguntas Frequentes";
-            } else {
-                faqList.style.display = "none";
-                faqButton.textContent = "Mostrar Perguntas Frequentes";
-            }
-        }
-
-        function toggleComentarios() {
-            const comentariosList = document.getElementById('comentariosList');
-            const comentariosButton = document.getElementById('comentariosButton');
-            if (comentariosList.style.display === "none") {
-                comentariosList.style.display = "block";
-                comentariosButton.textContent = "Esconder Comentários";
-            } else {
-                comentariosList.style.display = "none";
-                comentariosButton.textContent = "Mostrar Comentários";
-            }
+        function toggleCardapio() {
+            const cardapio = document.getElementById('cardapio');
+            cardapio.style.display = cardapio.style.display === 'none' ? 'block' : 'none';
         }
     </script>
 </head>
@@ -124,9 +126,10 @@
 
 <section>
     <h2>Galeria do Sabor</h2>
-    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="Grãos de café" width="200">
-    <img src="https://images.unsplash.com/photo-1527169402691-a861b1ecb0c2" alt="Xícara de café" width="200">
-    <img src="https://images.unsplash.com/photo-1597047084999-65e7762b8cd4" alt="Fazenda produtora" width="200">
+    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="Grãos de café" width="180">
+    <img src="https://images.unsplash.com/photo-1527169402691-a861b1ecb0c2" alt="Xícara de café" width="180">
+    <img src="https://images.unsplash.com/photo-1597047084999-65e7762b8cd4" alt="Fazenda produtora" width="180">
+    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085" alt="Ambiente rústico" width="180">
 </section>
 
 <section>
@@ -153,6 +156,24 @@
             <td>3 pacotes + brinde</td>
         </tr>
     </table>
+</section>
+
+<section>
+    <h2>Nosso Cardápio</h2>
+    <button onclick="toggleCardapio()">Ver Cardápio</button>
+    <div id="cardapio">
+        <ul>
+            <li>Espresso Tradicional - R$ 6,00</li>
+            <li>Capuccino com Canela - R$ 8,00</li>
+            <li>Café Gelado Artesanal - R$ 9,50</li>
+            <li>Café com Leite da Roça - R$ 7,00</li>
+            <li>Bolo de Fubá com Erva-Doce - R$ 5,00</li>
+            <li>Pão de Queijo Mineiro - R$ 4,50</li>
+            <li>Torrada com Manteiga de Fazenda - R$ 4,00</li>
+            <li>Café com Chocolate e Creme - R$ 10,00</li>
+            <li>Latte com Leite Vegetal - R$ 9,00</li>
+        </ul>
+    </div>
 </section>
 
 <section>
@@ -183,9 +204,9 @@
     <p>&copy; 2024 Café da Roça. Todos os direitos reservados.</p>
     <h2>Redes Sociais</h2>
     <ul>
-        <li><a href="#" style="color:white;">Facebook</a></li>
-        <li><a href="#" style="color:white;">Instagram</a></li>
-        <li><a href="#" style="color:white;">Twitter</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Twitter</a></li>
     </ul>
 </footer>
 </body>
