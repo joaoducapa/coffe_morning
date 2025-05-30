@@ -1,0 +1,103 @@
+/* Fundo geral e fonte */
+body {
+    font-family: 'Georgia', serif;
+    background-color: #F6F1ED;
+    color: #4B2E2B;
+    margin: 0;
+    padding: 0;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #B47B4E;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Navegação dos menus */
+nav {
+    background-color: #D8C3A5;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+/* Itens de cardápio */
+.item {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #FFF8F0;
+    border-left: 5px solid #B47B4E;
+    border-radius: 5px;
+}
+
+/* Botões */
+button, .botao-pedido {
+    background-color: #4B2E2B;
+    color: #FFF;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover, .botao-pedido:hover {
+    background-color: #6E3B2E;
+}
+
+/* Tabelas de preços */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #D8C3A5;
+}
+
+th {
+    background-color: #B47B4E;
+    color: white;
+}
+
+/* Seções principais */
+section {
+    margin: 20px;
+    padding: 15px;
+    background-color: #FFF8F0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(75, 46, 43, 0.1);
+}
+
+/* Rodapé */
+footer {
+    background-color: #4B2E2B;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer li {
+    display: inline;
+    margin: 0 10px;
+}
+
+footer a {
+    color: #F6F1ED;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
