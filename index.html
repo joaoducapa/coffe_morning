@@ -1,213 +1,681 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Café da Roça</title>
-    <style>
-        body {
-            font-family: 'Georgia', serif;
-            background-color: #F6F1ED;
-            color: #4B2E2B;
-            margin: 0;
-            padding: 0;
-            font-size: 18px;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Café da Roça - Experiência Artesanal</title>
 
-        header {
-            background-color: #8B5E3C;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display&display=swap" rel="stylesheet" />
 
-        nav, section {
-            padding: 20px;
-        }
+<style>
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
 
-        h2 {
-            color: #5A3B2A;
-        }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #f6f1ed, #e9d9c2);
+    background-image:
+      url('https://www.transparenttextures.com/patterns/pw-graph.png'),
+      linear-gradient(135deg, #f6f1ed, #e9d9c2);
+    background-repeat: repeat;
+    color: #4B2E2B;
+    min-height: 100vh;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    padding-bottom: 100px;
+  }
 
-        .item label {
-            display: block;
-            margin-bottom: 10px;
-        }
+  header {
+    background: #B47B4E;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  header p {
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
 
-        button, .botao-pedido {
-            background-color: #5A3B2A;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-        }
+  nav {
+    background: #7A4A2C;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 8px 15px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+  }
+  nav a:hover {
+    background-color: #9C5B32;
+  }
 
-        button:hover, .botao-pedido:hover {
-            background-color: #74452B;
-        }
+  main {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
 
-        footer {
-            background-color: #8B5E3C;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+  section {
+    margin-bottom: 60px;
+  }
+  section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: #7A4A2C;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #B47B4E;
+    padding-bottom: 5px;
+  }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
+  /* Galeria */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 15px;
+  }
+  .gallery img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
+  /* Modal imagens */
+  #modal {
+    position: fixed;
+    top: 0; left: 0; right:0; bottom:0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+  }
+  #modal img {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 10px;
+    box-shadow: 0 0 25px #fff;
+  }
+  #modal .close-btn {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    font-size: 2.5rem;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    user-select: none;
+  }
 
-        th {
-            background-color: #E3D5C0;
-        }
+  /* Cardápio */
+  .cardapio-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
 
-        .comentario {
-            background-color: #EFE8E1;
-            padding: 10px;
-            border-left: 5px solid #8B5E3C;
-            margin-bottom: 10px;
-        }
+  .cardapio-section {
+    flex: 1 1 400px;
+    background: #EFE8E1;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(180,123,78,0.3);
+  }
 
-        #cardapio {
-            display: none;
-            margin-top: 20px;
-        }
+  .cardapio-section h3 {
+    font-family: 'Playfair Display', serif;
+    color: #7A4A2C;
+    margin-bottom: 15px;
+  }
 
-        footer ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
+  .item-cardapio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #d9c9b7;
+  }
+  .item-info {
+    max-width: 65%;
+  }
+  .item-info h4 {
+    font-weight: 700;
+    color: #4B2E2B;
+  }
+  .item-info p {
+    font-size: 0.9rem;
+    color: #6d4b3b;
+  }
+  .item-preco {
+    font-weight: 600;
+    color: #7A4A2C;
+    margin-right: 10px;
+    min-width: 65px;
+    text-align: right;
+  }
+  .btn-add {
+    background-color: #7A4A2C;
+    border: none;
+    color: white;
+    padding: 7px 14px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .btn-add:hover {
+    background-color: #9C5B32;
+  }
 
-        footer a {
-            color: white;
-            text-decoration: none;
-        }
+  /* Carrinho */
+  #carrinho {
+    position: fixed;
+    top: 0; right: -350px;
+    width: 350px;
+    height: 100vh;
+    background: #F6F1ED;
+    box-shadow: -4px 0 10px rgba(0,0,0,0.2);
+    padding: 25px 20px;
+    overflow-y: auto;
+    transition: right 0.4s ease;
+    z-index: 100;
+  }
+  #carrinho.aberto {
+    right: 0;
+  }
+  #carrinho h3 {
+    font-family: 'Playfair Display', serif;
+    color: #7A4A2C;
+    margin-bottom: 20px;
+  }
+  #carrinho .fechar-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: #7A4A2C;
+    font-weight: 700;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+  .carrinho-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #d9c9b7;
+    padding-bottom: 10px;
+  }
+  .carrinho-item span {
+    font-weight: 600;
+    color: #4B2E2B;
+  }
+  .carrinho-item button {
+    background: #B47B4E;
+    border: none;
+    color: white;
+    border-radius: 20px;
+    padding: 3px 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  .carrinho-item button:hover {
+    background-color: #9C5B32;
+  }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
+  #abrir-carrinho {
+    position: fixed;
+    right: 20px;
+    bottom: 100px;
+    background: #B47B4E;
+    color: white;
+    border: none;
+    padding: 15px 22px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(180,123,78,0.6);
+    z-index: 120;
+    transition: background-color 0.3s ease;
+  }
+  #abrir-carrinho:hover {
+    background-color: #9C5B32;
+  }
 
-        ul li {
-            margin-bottom: 5px;
-        }
+  /* Sobre */
+  .sobre-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+  }
+  .sobre-texto {
+    flex: 1 1 400px;
+    font-size: 1.2rem;
+    color: #5a3d2e;
+  }
+  .sobre-imagens {
+    flex: 1 1 400px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  .sobre-imagens img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(180,123,78,0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .sobre-imagens img:hover {
+    transform: scale(1.05);
+  }
 
-        img {
-            margin: 10px;
-            border-radius: 8px;
-        }
-    </style>
-    <script>
-        function toggleCardapio() {
-            const cardapio = document.getElementById('cardapio');
-            cardapio.style.display = cardapio.style.display === 'none' ? 'block' : 'none';
-        }
-    </script>
+  /* Formulário */
+  form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #B47B4E;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+  }
+  form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  form button[type="submit"] {
+    background-color: #7A4A2C;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  form button[type="submit"]:hover {
+    background-color: #9C5B32;
+  }
+
+  /* Footer */
+  footer {
+    background: #B47B4E;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+  }
+  footer p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+  }
+  footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+  }
+  footer ul li a {
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  footer ul li a:hover {
+    color: #EFE8E1;
+    text-decoration: underline;
+  }
+
+  /* WhatsApp fixo */
+  #whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(37,211,102,0.6);
+    z-index: 150;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+  }
+  #whatsapp:hover {
+    background-color: #1ebe57;
+  }
+
+  #whatsapp svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Responsividade simples */
+  @media (max-width: 768px) {
+    .cardapio-container {
+      flex-direction: column;
+    }
+    .sobre-container {
+      flex-direction: column;
+    }
+    nav {
+      flex-direction: column;
+      gap: 15px;
+    }
+    header h1 {
+      font-size: 2.2rem;
+    }
+  }
+
+</style>
 </head>
 <body>
+
 <header>
-    <h1>Bem-vindo ao Café da Roça!</h1>
-    <p>Cafés artesanais direto dos pequenos produtores até a sua xícara.</p>
+  <h1>Café da Roça</h1>
+  <p>Cafés artesanais direto dos pequenos produtores até a sua xícara.</p>
 </header>
 
-<section>
+<nav>
+  <a href="#galeria">Galeria</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#cardapio">Cardápio</a>
+  <a href="#contato">Contato</a>
+</nav>
+
+<main>
+
+  <section id="galeria">
     <h2>Galeria do Sabor</h2>
-    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="Grãos de café" width="180">
-    <img src="https://images.unsplash.com/photo-1527169402691-a861b1ecb0c2" alt="Xícara de café" width="180">
-    <img src="https://images.unsplash.com/photo-1597047084999-65e7762b8cd4" alt="Fazenda produtora" width="180">
-    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085" alt="Ambiente rústico" width="180">
-</section>
-
-<section>
-    <h2>Planos de Assinatura</h2>
-    <table>
-        <tr>
-            <th>Plano</th>
-            <th>Preço</th>
-            <th>Detalhes</th>
-        </tr>
-        <tr>
-            <td>Básico</td>
-            <td>R$ 39,90</td>
-            <td>1 pacote de 250g/mês</td>
-        </tr>
-        <tr>
-            <td>Intermediário</td>
-            <td>R$ 59,90</td>
-            <td>2 pacotes de 250g/mês</td>
-        </tr>
-        <tr>
-            <td>Premium</td>
-            <td>R$ 89,90</td>
-            <td>3 pacotes + brinde</td>
-        </tr>
-    </table>
-</section>
-
-<section>
-    <h2>Nosso Cardápio</h2>
-    <button onclick="toggleCardapio()">Ver Cardápio</button>
-    <div id="cardapio">
-        <ul>
-            <li>Espresso Tradicional - R$ 6,00</li>
-            <li>Capuccino com Canela - R$ 8,00</li>
-            <li>Café Gelado Artesanal - R$ 9,50</li>
-            <li>Café com Leite da Roça - R$ 7,00</li>
-            <li>Bolo de Fubá com Erva-Doce - R$ 5,00</li>
-            <li>Pão de Queijo Mineiro - R$ 4,50</li>
-            <li>Torrada com Manteiga de Fazenda - R$ 4,00</li>
-            <li>Café com Chocolate e Creme - R$ 10,00</li>
-            <li>Latte com Leite Vegetal - R$ 9,00</li>
-        </ul>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Grãos de café" data-large="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=90" />
+      <img src="https://images.unsplash.com/photo-1527169402691-a861b1ecb0c2?auto=format&fit=crop&w=800&q=80" alt="Xícara de café" data-large="https://images.unsplash.com/photo-1527169402691-a861b1ecb0c2?auto=format&fit=crop&w=1200&q=90" />
+      <img src="https://images.unsplash.com/photo-1597047084999-65e7762b8cd4?auto=format&fit=crop&w=800&q=80" alt="Fazenda produtora" data-large="https://images.unsplash.com/photo-1597047084999-65e7762b8cd4?auto=format&fit=crop&w=1200&q=90" />
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Ambiente rústico" data-large="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=90" />
     </div>
-</section>
+  </section>
 
-<section>
+  <section id="sobre">
+    <h2>Sobre o Café da Roça</h2>
+    <div class="sobre-container">
+      <div class="sobre-texto">
+        <p>Somos um projeto que conecta você aos pequenos produtores de café artesanal, trazendo qualidade, sabor e tradição diretamente para a sua casa. Nosso compromisso é com a sustentabilidade e o comércio justo.</p>
+        <p>Conheça a história do nosso café, sua origem e o cuidado em cada etapa da produção, garantindo uma experiência única e autêntica a cada xícara.</p>
+      </div>
+      <div class="sobre-imagens">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=70" alt="Plantação de café" data-large="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=90" />
+        <img src="https://images.unsplash.com/photo-1527169402691-a861b1ecb0c2?auto=format&fit=crop&w=400&q=70" alt="Colheita" data-large="https://images.unsplash.com/photo-1527169402691-a861b1ecb0c2?auto=format&fit=crop&w=1200&q=90" />
+        <img src="https://images.unsplash.com/photo-1597047084999-65e7762b8cd4?auto=format&fit=crop&w=400&q=70" alt="Processamento do café" data-large="https://images.unsplash.com/photo-1597047084999-65e7762b8cd4?auto=format&fit=crop&w=1200&q=90" />
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=400&q=70" alt="Café servido" data-large="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=90" />
+      </div>
+    </div>
+  </section>
+
+  <section id="cardapio">
+    <h2>Nosso Cardápio</h2>
+    <div class="cardapio-container">
+      <!-- Bebidas -->
+      <div class="cardapio-section">
+        <h3>Bebidas</h3>
+        <div class="item-cardapio">
+          <div class="item-info">
+            <h4>Espresso Tradicional</h4>
+            <p>Café forte, encorpado, servido na medida certa.</p>
+          </div>
+          <div class="item-preco">R$ 6,00</div>
+          <button class="btn-add" data-nome="Espresso Tradicional" data-preco="6.00">Adicionar</button>
+        </div>
+        <div class="item-cardapio">
+          <div class="item-info">
+            <h4>Cappuccino</h4>
+            <p>Espresso com leite cremoso e espuma delicada.</p>
+          </div>
+          <div class="item-preco">R$ 10,00</div>
+          <button class="btn-add" data-nome="Cappuccino" data-preco="10.00">Adicionar</button>
+        </div>
+        <div class="item-cardapio">
+          <div class="item-info">
+            <h4>Mocha</h4>
+            <p>Mix de café, chocolate e leite, perfeito para amantes do doce.</p>
+          </div>
+          <div class="item-preco">R$ 12,00</div>
+          <button class="btn-add" data-nome="Mocha" data-preco="12.00">Adicionar</button>
+        </div>
+      </div>
+
+      <!-- Comidas -->
+      <div class="cardapio-section">
+        <h3>Comidas</h3>
+        <div class="item-cardapio">
+          <div class="item-info">
+            <h4>Bolo de Café</h4>
+            <p>Delicioso bolo caseiro com toque especial de café.</p>
+          </div>
+          <div class="item-preco">R$ 15,00</div>
+          <button class="btn-add" data-nome="Bolo de Café" data-preco="15.00">Adicionar</button>
+        </div>
+        <div class="item-cardapio">
+          <div class="item-info">
+            <h4>Pão de Queijo</h4>
+            <p>Tradicional pãozinho mineiro, macio e quentinho.</p>
+          </div>
+          <div class="item-preco">R$ 8,00</div>
+          <button class="btn-add" data-nome="Pão de Queijo" data-preco="8.00">Adicionar</button>
+        </div>
+        <div class="item-cardapio">
+          <div class="item-info">
+            <h4>Torta de Chocolate</h4>
+            <p>Torta cremosa, ideal para acompanhar o café.</p>
+          </div>
+          <div class="item-preco">R$ 18,00</div>
+          <button class="btn-add" data-nome="Torta de Chocolate" data-preco="18.00">Adicionar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
     <h2>Fale Conosco</h2>
-    <form>
-        <label>Nome:<br><input type="text" name="nome" required></label><br><br>
-        <label>Email:<br><input type="email" name="email" required></label><br><br>
-        <label>Mensagem:<br><textarea name="mensagem" rows="4" required></textarea></label><br><br>
-        <button type="submit">Enviar</button>
+    <form id="form-contato" novalidate>
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required />
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" placeholder="seu@email.com" required />
+
+      <label for="mensagem">Mensagem:</label>
+      <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem" required></textarea>
+
+      <button type="submit">Enviar Mensagem</button>
     </form>
-</section>
+  </section>
 
-<section>
-    <h2>Onde estamos</h2>
-    <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.3738587342704!2d-46.65823918502131!3d-23.588188984669112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c4044b64fb%3A0x6276f77cfe9b740f!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1616441389171!5m2!1spt-BR!2sbr" 
-        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
-    </iframe>
-</section>
+</main>
 
-<a href="https://wa.me/5544997591110" 
-   style="position:fixed;bottom:20px;right:20px;background:#25D366;color:white;
-          padding:10px 15px;border-radius:50px;text-decoration:none;font-weight:bold;">
-   Fale no WhatsApp
+<!-- Carrinho -->
+<div id="carrinho" aria-label="Carrinho de compras">
+  <button class="fechar-btn" aria-label="Fechar carrinho">&times;</button>
+  <h3>Seu Carrinho</h3>
+  <div id="itens-carrinho">
+    <p>Seu carrinho está vazio.</p>
+  </div>
+  <div id="total-carrinho" style="margin-top: 20px; font-weight: 700; color: #7A4A2C;"></div>
+</div>
+
+<!-- Botão abrir carrinho -->
+<button id="abrir-carrinho" aria-label="Abrir carrinho">Carrinho 🛒</button>
+
+<!-- Modal imagens -->
+<div id="modal" aria-hidden="true">
+  <span class="close-btn" aria-label="Fechar imagem">&times;</span>
+  <img src="" alt="Imagem ampliada" />
+</div>
+
+<!-- WhatsApp fixo -->
+<a href="https://wa.me/5511999999999" id="whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contato WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="white" d="M380.9 97.1c-45.3-45.3-106-70.3-170-70.3-128.1 0-232 103.9-232 232 0 40.9 11.1 81.4 32.1 116l-34 124.6 128.1-34c33.6 18.4 72.3 28.1 111.8 28.1 128.1 0 232-103.9 232-232 0-64.1-25-124.8-70.3-170zm-43.3 212.3c-5.9 17.5-32.7 33.6-48.3 35.6-13.1 1.6-29.2 2.3-69.6-20.6-40.5-23.3-66.7-52.3-74.4-69.8-7.7-17.5-1.1-25.9 5.3-34.2 5.4-6.9 13.1-8.8 20.8-14.7 6.8-5.3 9.1-9.1 13.6-15.3 4.5-6.2 2.3-11.6-1.2-16.2-3.5-4.5-69.2-66.3-72.7-70.5-3.5-4.3-7-10.3-9.9-14.9-2.9-4.6-9.9-7.3-13.6-7.3-3.7 0-7.9-0.5-12.1-0.5s-11.1 1.6-16.9 8c-5.9 6.5-22.5 21.9-22.5 53.2s23 62.2 26.3 66.5c3.2 4.3 45.3 69.2 109.9 97 64.6 27.9 64.6-27.9 76.1-31.5 11.5-3.6 32.7-13.3 37.3-26.1 4.6-12.8 4.6-23.7 3.2-26.1z"/></svg>
+  WhatsApp
 </a>
 
-<footer>
-    <p>&copy; 2024 Café da Roça. Todos os direitos reservados.</p>
-    <h2>Redes Sociais</h2>
-    <ul>
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">Twitter</a></li>
-    </ul>
-</footer>
+<script>
+  // Modal imagens
+  const modal = document.getElementById('modal');
+  const modalImg = modal.querySelector('img');
+  const modalClose = modal.querySelector('.close-btn');
+
+  document.querySelectorAll('.gallery img, .sobre-imagens img').forEach(img => {
+    img.addEventListener('click', () => {
+      modalImg.src = img.dataset.large || img.src;
+      modalImg.alt = img.alt;
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  modalClose.addEventListener('click', () => {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    modalImg.src = '';
+    modalImg.alt = '';
+  });
+
+  modal.addEventListener('click', (e) => {
+    if(e.target === modal) {
+      modalClose.click();
+    }
+  });
+
+  // Carrinho
+  const carrinho = document.getElementById('carrinho');
+  const abrirCarrinhoBtn = document.getElementById('abrir-carrinho');
+  const fecharCarrinhoBtn = carrinho.querySelector('.fechar-btn');
+  const itensCarrinhoDiv = document.getElementById('itens-carrinho');
+  const totalCarrinhoDiv = document.getElementById('total-carrinho');
+
+  let carrinhoItems = [];
+
+  abrirCarrinhoBtn.addEventListener('click', () => {
+    carrinho.classList.add('aberto');
+  });
+  fecharCarrinhoBtn.addEventListener('click', () => {
+    carrinho.classList.remove('aberto');
+  });
+
+  // Função para atualizar carrinho na tela
+  function atualizarCarrinho() {
+    if(carrinhoItems.length === 0) {
+      itensCarrinhoDiv.innerHTML = '<p>Seu carrinho está vazio.</p>';
+      totalCarrinhoDiv.textContent = '';
+      return;
+    }
+
+    let html = '';
+    let total = 0;
+
+    carrinhoItems.forEach((item, index) => {
+      html += `
+        <div class="carrinho-item">
+          <span>${item.nome} - R$ ${item.preco.toFixed(2)}</span>
+          <button aria-label="Remover ${item.nome}" data-index="${index}">&times;</button>
+        </div>
+      `;
+      total += item.preco;
+    });
+
+    itensCarrinhoDiv.innerHTML = html;
+    totalCarrinhoDiv.textContent = 'Total: R$ ' + total.toFixed(2);
+
+    // Adicionar evento para remover item
+    itensCarrinhoDiv.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const idx = e.target.getAttribute('data-index');
+        carrinhoItems.splice(idx, 1);
+        atualizarCarrinho();
+      });
+    });
+  }
+
+  // Adicionar item no carrinho
+  document.querySelectorAll('.btn-add').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const nome = btn.getAttribute('data-nome');
+      const preco = parseFloat(btn.getAttribute('data-preco'));
+      carrinhoItems.push({nome, preco});
+      atualizarCarrinho();
+      carrinho.classList.add('aberto');
+    });
+  });
+
+  // Formulário de contato - validação simples
+  const form = document.getElementById('form-contato');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const nome = form.nome.value.trim();
+    const email = form.email.value.trim();
+    const mensagem = form.mensagem.value.trim();
+
+    if(nome.length < 3) {
+      alert('Por favor, insira um nome válido.');
+      form.nome.focus();
+      return;
+    }
+    if(!email.includes('@') || !email.includes('.')) {
+      alert('Por favor, insira um e-mail válido.');
+      form.email.focus();
+      return;
+    }
+    if(mensagem.length < 10) {
+      alert('A mensagem deve ter ao menos 10 caracteres.');
+      form.mensagem.focus();
+      return;
+    }
+
+    alert('Mensagem enviada com sucesso! Obrigado pelo contato.');
+    form.reset();
+  });
+
+</script>
+
 </body>
 </html>
