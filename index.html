@@ -1,137 +1,211 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Café da Roça</title>
-    <style>
-        body {
-            font-family: 'Georgia', serif;
-            background-color: #F6F1ED;
-            color: #4B2E2B;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #B47B4E;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        nav, section {
-            padding: 20px;
-        }
-
-        h2 {
-            color: #8B5E3C;
-        }
-
-        .item label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        button, .botao-pedido {
-            background-color: #8B5E3C;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        button:hover, .botao-pedido:hover {
-            background-color: #A67449;
-        }
-
-        footer {
-            background-color: #B47B4E;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #E3D5C0;
-        }
-
-        .comentario {
-            background-color: #EFE8E1;
-            padding: 10px;
-            border-left: 5px solid #B47B4E;
-            margin-bottom: 10px;
-        }
-    </style>
-    <script>
-        function calculateTotal() {
-            const items = document.querySelectorAll('.item');
-            let total = 0;
-            items.forEach(item => {
-                const price = parseFloat(item.dataset.price);
-                if (item.querySelector('input').checked) {
-                    total += price;
-                }
-            });
-            alert("Total do pedido: R$ " + total.toFixed(2));
-        }
-
-        function toggleFAQ() {
-            const faqList = document.getElementById('faqList');
-            const faqButton = document.getElementById('faqButton');
-            if (faqList.style.display === "none") {
-                faqList.style.display = "block";
-                faqButton.textContent = "Esconder Perguntas Frequentes";
-            } else {
-                faqList.style.display = "none";
-                faqButton.textContent = "Mostrar Perguntas Frequentes";
-            }
-        }
-
-        function toggleComentarios() {
-            const comentariosList = document.getElementById('comentariosList');
-            const comentariosButton = document.getElementById('comentariosButton');
-            if (comentariosList.style.display === "none") {
-                comentariosList.style.display = "block";
-                comentariosButton.textContent = "Esconder Comentários";
-            } else {
-                comentariosList.style.display = "none";
-                comentariosButton.textContent = "Mostrar Comentários";
-            }
-        }
-    </script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Café da Roça - Assinatura de Café Artesanal</title>
+<style>
+  body {
+    font-family: 'Georgia', serif;
+    background-color: #F6F1ED;
+    color: #4B2E2B;
+    margin: 0; padding: 0;
+  }
+  header {
+    background-color: #B47B4E;
+    color: white;
+    text-align: center;
+    padding: 25px 10px;
+  }
+  h1, h2 {
+    margin: 0 0 15px 0;
+  }
+  nav, main, section {
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+  }
+  .item label {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  button, .botao-pedido {
+    background-color: #8B5E3C;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+  }
+  button:hover, .botao-pedido:hover {
+    background-color: #A67449;
+  }
+  footer {
+    background-color: #B47B4E;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  th {
+    background-color: #E3D5C0;
+  }
+  .comentario {
+    background-color: #EFE8E1;
+    padding: 10px;
+    border-left: 5px solid #B47B4E;
+    margin-bottom: 10px;
+  }
+  #map {
+    height: 300px;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/7/7c/Mapa_do_Brasil_-_Regioes_e_Estados.svg') no-repeat center center;
+    background-size: contain;
+    border: 1px solid #8B5E3C;
+    margin-top: 15px;
+  }
+  .regiao {
+    margin-top: 10px;
+  }
+</style>
+<script>
+  function calculateTotal() {
+    const items = document.querySelectorAll('.item');
+    let total = 0;
+    items.forEach(item => {
+      const price = parseFloat(item.dataset.price);
+      if(item.querySelector('input').checked) {
+        total += price;
+      }
+    });
+    alert("Total do pedido: R$ " + total.toFixed(2));
+  }
+  function toggleFAQ() {
+    const faqList = document.getElementById('faqList');
+    const faqButton = document.getElementById('faqButton');
+    if(faqList.style.display === "none") {
+      faqList.style.display = "block";
+      faqButton.textContent = "Esconder Perguntas Frequentes";
+    } else {
+      faqList.style.display = "none";
+      faqButton.textContent = "Mostrar Perguntas Frequentes";
+    }
+  }
+  function toggleComentarios() {
+    const comentariosList = document.getElementById('comentariosList');
+    const comentariosButton = document.getElementById('comentariosButton');
+    if(comentariosList.style.display === "none") {
+      comentariosList.style.display = "block";
+      comentariosButton.textContent = "Esconder Comentários";
+    } else {
+      comentariosList.style.display = "none";
+      comentariosButton.textContent = "Mostrar Comentários";
+    }
+  }
+</script>
 </head>
 <body>
-    <header>
-        <h1>Bem-vindo ao Café da Roça!</h1>
-        <p>Cafés artesanais direto dos pequenos produtores até a sua xícara.</p>
-    </header>
 
-    <!-- O restante do conteúdo do site (menu de cafés, comentários, FAQ etc.) fica aqui -->
+<header>
+  <h1>Café da Roça</h1>
+  <p>Cafés artesanais dos pequenos produtores direto para sua xícara.</p>
+</header>
 
-    <footer>
-        <p>&copy; 2024 Café da Roça. Todos os direitos reservados.</p>
-        <h2>Redes Sociais</h2>
-        <ul>
-            <li><a href="#" style="color:white;">Facebook</a></li>
-            <li><a href="#" style="color:white;">Instagram</a></li>
-            <li><a href="#" style="color:white;">Twitter</a></li>
-        </ul>
-    </footer>
+<nav>
+  <h2>Menu de Cafés</h2>
+  <div class="item" data-price="18.00">
+    <label><input type="checkbox" /> Café Espresso - R$ 18,00</label>
+  </div>
+  <div class="item" data-price="22.00">
+    <label><input type="checkbox" /> Café coado especial - R$ 22,00</label>
+  </div>
+  <div class="item" data-price="25.00">
+    <label><input type="checkbox" /> Café com leite cremoso - R$ 25,00</label>
+  </div>
+  <div class="item" data-price="20.00">
+    <label><input type="checkbox" /> Mocha artesanal - R$ 20,00</label>
+  </div>
+  <div class="item" data-price="30.00">
+    <label><input type="checkbox" /> Café gelado com especiarias - R$ 30,00</label>
+  </div>
+  <button onclick="calculateTotal()">Calcular Total do Pedido</button>
+</nav>
+
+<section class="assinatura">
+  <h2>Assinatura de Café Artesanal</h2>
+  <p>Receba mensalmente uma seleção exclusiva dos melhores cafés de pequenos produtores direto na sua casa.</p>
+  <ul>
+    <li>Café de alta qualidade e frescor garantido</li>
+    <li>Receitas e dicas exclusivas para preparar seu café</li>
+    <li>Embalagem sustentável e personalizada</li>
+  </ul>
+  <a href="https://wa.me/5544997591110" class="botao-pedido">Assinar Agora pelo WhatsApp</a>
+</section>
+
+<section>
+  <h2>Regiões Produtoras</h2>
+  <p>Conheça as principais regiões onde nossos cafés são cultivados:</p>
+  <div id="map" title="Mapa do Brasil com regiões produtoras"></div>
+  <div class="regiao"><strong>Mantiqueira de Minas</strong>: Cafés com aroma intenso e sabor equilibrado.</div>
+  <div class="regiao"><strong>Sul de Minas</strong>: Notas frutadas e corpo médio.</div>
+  <div class="regiao"><strong>Chapada Diamantina</strong>: Perfume floral e acidez marcante.</div>
+  <div class="regiao"><strong>Espírito Santo</strong>: Cafés de sabor suave e doce.</div>
+</section>
+
+<section>
+  <h2>Perguntas Frequentes (FAQ)</h2>
+  <button id="faqButton" onclick="toggleFAQ()">Mostrar Perguntas Frequentes</button>
+  <div id="faqList" style="display:none;">
+    <dl>
+      <dt>Qual é o prazo de entrega?</dt>
+      <dd>O prazo é de 3 a 7 dias úteis, dependendo da região.</dd>
+      <dt>Posso escolher os tipos de café da minha assinatura?</dt>
+      <dd>Sim! Envie suas preferências via WhatsApp após assinar.</dd>
+      <dt>O café é 100% artesanal?</dt>
+      <dd>Sim, todo nosso café é cultivado por pequenos produtores e selecionado cuidadosamente.</dd>
+    </dl>
+  </div>
+</section>
+
+<section>
+  <h2>Comentários de Clientes</h2>
+  <button id="comentariosButton" onclick="toggleComentarios()">Mostrar Comentários</button>
+  <div id="comentariosList" style="display:none;">
+    <div class="comentario">
+      <p><strong>Ana Silva:</strong> "A qualidade do café é incrível, super recomendo para quem ama um sabor autêntico."</p>
+    </div>
+    <div class="comentario">
+      <p><strong>João Pereira:</strong> "A assinatura chegou rápido e o café é delicioso, nota 10 para o atendimento."</p>
+    </div>
+    <div class="comentario">
+      <p><strong>Fernanda Costa:</strong> "Adorei a variedade e o cuidado com a embalagem, perfeito para presentear."</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2024 Café da Roça. Todos os direitos reservados.</p>
+  <h2>Redes Sociais</h2>
+  <ul style="list-style:none; padding:0;">
+    <li><a href="#" style="color:white;">Facebook</a></li>
+    <li><a href="#" style="color:white;">Instagram</a></li>
+    <li><a href="#" style="color:white;">Twitter</a></li>
+  </ul>
+</footer>
+
 </body>
 </html>
