@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Mania</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function calculateTotal() {
+            const items = document.querySelectorAll('.item');
+            let total = 0;
+            items.forEach(item => {
+                const price = parseFloat(item.dataset.price);
+                if (item.querySelector('input').checked) {
+                    total += price;
+                }
+            });
+            alert("Total do pedido: R$ " + total.toFixed(2));
+        }
+
+        function toggleFAQ() {
+            const faqList = document.getElementById('faqList');
+            const faqButton = document.getElementById('faqButton');
+            if (faqList.style.display === "none") {
+                faqList.style.display = "block";
+                faqButton.textContent = "Esconder Perguntas Frequentes";
+            } else {
+                faqList.style.display = "none";
+                faqButton.textContent = "Mostrar Perguntas Frequentes";
+            }
+        }
+
+        function toggleComentarios() {
+            const comentariosList = document.getElementById('comentariosList');
+            const comentariosButton = document.getElementById('comentariosButton');
+            if (comentariosList.style.display === "none") {
+                comentariosList.style.display = "block";
+                comentariosButton.textContent = "Esconder Comentários";
+            } else {
+                comentariosList.style.display = "none";
+                comentariosButton.textContent = "Mostrar Comentários";
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Bem-vindo à Café Mania!</h1>
+        <p>Os melhores cafés artesanais direto dos pequenos produtores para sua casa.</p>
+    </header>
+
+    <nav class="menu">
+        <h2>Menu de Cafés</h2>
+        <div class="item cafe-item" data-price="25.00">
+            <label>
+                <input type="checkbox"> Café Sul de Minas - R$ 25,00
+            </label>
+        </div>
+        <div class="item cafe-item" data-price="28.00">
+            <label>
+                <input type="checkbox"> Café Caparaó - R$ 28,00
+            </label>
+        </div>
+        <div class="item cafe-item" data-price="26.00">
+            <label>
+                <input type="checkbox"> Café da Chapada Diamantina - R$ 26,00
+            </label>
+        </div>
+        <div class="item cafe-item" data-price="24.00">
+            <label>
+                <input type="checkbox"> Café do Cerrado Mineiro - R$ 24,00
+            </label>
+        </div>
+        <button onclick="calculateTotal()">Calcular Total dos Cafés</button>
+    </nav>
+
+    <nav class="bebidas">
+        <h2>Complementos</h2>
+        <div class="item bebida-item" data-price="5.00">
+            <label>
+                <input type="checkbox"> Cookies Artesanais - R$ 5,00
+            </label>
+        </div>
+        <div class="item bebida-item" data-price="7.00">
+            <label>
+                <input type="checkbox"> Bolo de Cenoura com Chocolate - R$ 7,00
+            </label>
+        </div>
+        <div class="item bebida-item" data-price="3.00">
+            <label>
+                <input type="checkbox"> Torradas com Geleia - R$ 3,00
+            </label>
+        </div>
+        <button onclick="calculateTotal()">Calcular Total dos Itens</button>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Nossos Cafés Populares</h2>
+            <ul>
+                <li><strong>Café Quente da Roça</strong> - Tradição e sabor intenso!</li>
+                <li><strong>Café Especial do Caparaó</strong> - Leve, floral e aromático.</li>
+                <li><strong>Café da Vovó</strong> - Receita caseira e acolhedora.</li>
+                <li><strong>Café Gourmet Cacau</strong> - Notas suaves de chocolate.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Cafés com Sabores</h2>
+            <ul>
+                <li>Café com Canela</li>
+                <li>Café com Baunilha</li>
+                <li>Café com Chocolate</li>
+                <li>Café com Caramelo</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Preços dos Cafés</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo de Café</th>
+                        <th>Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Café 250g</td>
+                        <td>R$20,00</td>
+                    </tr>
+                    <tr>
+                        <td>Café 500g</td>
+                        <td>R$35,00</td>
+                    </tr>
+                    <tr>
+                        <td>Café 1kg</td>
+                        <td>R$60,00</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Frete varia de acordo com a região.</strong></p>
+        </section>
+
+        <section>
+            <h2>Promoções Especiais</h2>
+            <ul>
+                <li>10% de desconto na primeira assinatura!</li>
+                <li>Assine 3 meses e ganhe 1 pacote extra!</li>
+                <li>Café com sabor em promoção toda sexta-feira!</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>FAQ (Perguntas Frequentes)</h2>
+            <button id="faqButton" onclick="toggleFAQ()">Mostrar Perguntas Frequentes</button>
+            <div id="faqList" style="display: none;">
+                <dl>
+                    <dt>Qual o prazo de entrega?</dt>
+                    <dd>De 3 a 5 dias úteis, dependendo da localização.</dd>
+                    <dt>Vocês entregam para todo o Brasil?</dt>
+                    <dd>Sim, entregamos em todo o território nacional.</dd>
+                    <dt>Posso personalizar minha assinatura?</dt>
+                    <dd>Sim! Escolha seus tipos favoritos ao assinar.</dd>
+                </dl>
+            </div>
+        </section>
+
+        <section>
+            <h2>História da Cafeteria</h2>
+            <p>Fundada em 2020, a Café Mania nasceu do amor pelo café artesanal. Desde então, valorizamos pequenos produtores e buscamos levar até você grãos frescos e selecionados com carinho.</p>
+        </section>
+
+        <section>
+            <h2>Informações da Cafeteria</h2>
+            <p>Localização: Rua do Bicudo, N:2896, Jardim Sol Nascente.</p>
+            <p><strong>Atendemos apenas por delivery ou assinatura.</strong></p>
+            <h3>Formas de Pagamento:</h3>
+            <ul>
+                <li>Cartões de crédito e débito</li>
+                <li>Pix - Pagamento rápido e fácil!</li>
+                <li>Dinheiro em espécie</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Contato</h2>
+            <p>Quer fazer um pedido ou tirar dúvidas? Chame no WhatsApp: (44) 99759-1110</p>
+            <img src="sua-imagem-aqui.jpg" alt="Café delicioso" />
+        </section>
+
+        <section>
+            <h2>Comentários de Clientes</h2>
+            <button id="comentariosButton" onclick="toggleComentarios()">Mostrar Comentários</button>
+            <div id="comentariosList" style="display: none;">
+                <div class="comentario">
+                    <p><strong>Ana Silva:</strong> "O melhor café que já experimentei! O Caparaó tem um aroma incrível!"</p>
+                </div>
+                <div class="comentario">
+                    <p><strong>José Pereira:</strong> "Entrega rápida e qualidade ótima. Estou apaixonado pelo Café da Roça!"</p>
+                </div>
+                <div class="comentario">
+                    <p><strong>Fernanda Costa:</strong> "Excelente serviço e cafés muito saborosos. Recomendo para todos!"</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="pedido">
+        <h2>Assine Agora</h2>
+        <p>Pronto para experimentar os melhores cafés do Brasil? Clique no botão abaixo para fazer sua assinatura!</p>
+        <a href="https://wa.me/5544997591110" class="botao-pedido">Assinar Agora</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Café Mania. Todos os direitos reservados.</p>
+        <h2>Redes Sociais</h2>
+        <ul>
+            <li><a href="https://www.facebook.com/cafemania" target="_blank">Facebook</a></li>
+            <li><a href="https://www.instagram.com/biel_rf07" target="_blank">Instagram</a></li>
+            <li><a href="https://www.twitter.com/cafemania" target="_blank">Twitter</a></li>
+        </ul>
+    </footer>
+</body>
+</html>
