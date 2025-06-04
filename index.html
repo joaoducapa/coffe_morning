@@ -1,422 +1,280 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Café da Roça - Café Artesanal</title>
-<style>
-  /* Reset básico */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: 'Arial', sans-serif;
-    background: #f9f1e7; /* fundo bege suave */
-    color: #4a3b2a;
-    line-height: 1.6;
-    min-height: 100vh;
-  }
-
-  header {
-    background: #6b4226; /* marrom escuro */
-    color: white;
-    padding: 30px 20px;
-    text-align: center;
-  }
-
-  header h1 {
-    font-size: 3.6rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    font-family: 'Georgia', serif;
-  }
-
-  nav {
-    background: #a77d4b; /* marrom médio */
-    padding: 15px 0;
-    text-align: center;
-  }
-
-  nav a {
-    color: white;
-    font-size: 1.3rem;
-    margin: 0 18px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-  }
-
-  nav a:hover {
-    color: #f9f1e7;
-  }
-
-  main {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
-  }
-
-  section {
-    margin-bottom: 70px;
-  }
-
-  /* Seção Sobre */
-  #sobre {
-    text-align: center;
-  }
-
-  #sobre h2 {
-    font-size: 3.2rem;
-    color: #6b4226;
-    margin-bottom: 18px;
-    font-family: 'Georgia', serif;
-  }
-
-  #sobre p {
-    font-size: 1.4rem;
-    max-width: 800px;
-    margin: 0 auto;
-    color: #4a3b2a;
-  }
-
-  /* Galeria */
-  #galeria {
-    text-align: center;
-  }
-
-  #galeria h2 {
-    font-size: 3rem;
-    margin-bottom: 25px;
-    color: #6b4226;
-    font-family: 'Georgia', serif;
-  }
-
-  #galeria .imagens {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 18px;
-  }
-
-  #galeria img {
-    width: 320px;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(107, 66, 38, 0.3);
-    transition: transform 0.3s ease;
-    cursor: pointer;
-  }
-
-  #galeria img:hover {
-    transform: scale(1.05);
-  }
-
-  /* Cardápio */
-  #cardapio {
-    text-align: center;
-  }
-
-  #cardapio h2 {
-    font-size: 3.2rem;
-    color: #6b4226;
-    margin-bottom: 30px;
-    font-family: 'Georgia', serif;
-  }
-
-  #cardapio .cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 28px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .card-item {
-    background: #fff3e0;
-    border-radius: 14px;
-    box-shadow: 0 6px 15px rgba(107, 66, 38, 0.2);
-    padding: 25px 30px;
-    width: 280px;
-    text-align: center;
-    transition: box-shadow 0.3s ease;
-  }
-
-  .card-item:hover {
-    box-shadow: 0 10px 25px rgba(107, 66, 38, 0.4);
-  }
-
-  .card-item h3 {
-    font-size: 2.1rem;
-    margin-bottom: 15px;
-    color: #6b4226;
-    font-family: 'Georgia', serif;
-  }
-
-  .card-item p {
-    font-size: 1.2rem;
-    color: #4a3b2a;
-    margin-bottom: 18px;
-  }
-
-  .card-item .preco {
-    font-weight: 700;
-    font-size: 1.6rem;
-    color: #6b4226;
-  }
-
-  /* Assinatura */
-  #assinatura {
-    background: #f9f1e7;
-    padding: 60px 20px;
-    text-align: center;
-  }
-
-  #assinatura h2 {
-    font-size: 3.2rem;
-    color: #6b4226;
-    margin-bottom: 20px;
-    font-family: 'Georgia', serif;
-  }
-
-  #assinatura p.intro {
-    font-size: 1.4rem;
-    max-width: 700px;
-    margin: 0 auto 40px;
-    color: #4a3b2a;
-    line-height: 1.6;
-  }
-
-  #assinatura .planos {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
-
-  .plano {
-    background: #fff3e0;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(107, 66, 38, 0.2);
-    padding: 30px;
-    width: 320px;
-    text-align: left;
-    color: #4a3b2a;
-  }
-
-  .plano h3 {
-    font-size: 2rem;
-    color: #6b4226;
-    margin-bottom: 10px;
-    font-family: 'Georgia', serif;
-  }
-
-  .plano p.desc {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-  }
-
-  .plano ul {
-    list-style: none;
-    padding-left: 0;
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-  }
-
-  .plano ul li {
-    margin-bottom: 10px;
-    padding-left: 24px;
-    position: relative;
-  }
-
-  .plano ul li::before {
-    content: "☕";
-    position: absolute;
-    left: 0;
-    color: #6b4226;
-    font-weight: bold;
-  }
-
-  .plano ul li:nth-child(2)::before {
-    content: "🎁";
-  }
-
-  .plano ul li:nth-child(3)::before {
-    content: "💰";
-  }
-
-  .plano ul li:nth-child(4)::before {
-    content: "🚚";
-  }
-
-  .plano .preco {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #6b4226;
-    margin-bottom: 25px;
-  }
-
-  .plano button {
-    background-color: #6b4226;
-    color: white;
-    border: none;
-    padding: 14px 30px;
-    border-radius: 8px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease;
-  }
-
-  .plano button:hover {
-    background-color: #593417;
-  }
-
-  /* Footer */
-  footer {
-    background: #6b4226;
-    color: white;
-    text-align: center;
-    padding: 25px 20px;
-    font-size: 1.1rem;
-  }
-
-  /* Responsividade */
-  @media (max-width: 920px) {
-    #cardapio .cards,
-    #assinatura .planos {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Café da Roça - Assinatura de Café Artesanal</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #4b382a;
+            line-height: 1.6;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            background: rgba(255, 248, 238, 0.95);
+            padding: 40px;
+            margin: auto;
+            border-radius: 12px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.15);
+        }
+        h1, h2, h3 {
+            font-weight: 700;
+            color: #3a2e23;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            font-family: 'Georgia', serif;
+        }
+        p {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .flex-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+        .flex-column {
+            flex: 1 1 300px;
+            min-width: 280px;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: block;
+            margin: 0 auto;
+        }
+        /* Cardápio */
+        .cardapio {
+            background: #e6d6c3;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: inset 0 0 15px #b89f87;
+        }
+        .cardapio h2 {
+            color: #5c462b;
+            margin-bottom: 30px;
+        }
+        .cardapio-item {
+            margin-bottom: 18px;
+            font-size: 1.15rem;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #b89f87;
+            padding-bottom: 6px;
+        }
+        .cardapio-item:last-child {
+            border: none;
+        }
+        .cardapio-item .nome {
+            font-weight: 600;
+            color: #4a3720;
+        }
+        .cardapio-item .preco {
+            font-weight: 700;
+            color: #3e2e1c;
+        }
+        /* Assinatura */
+        .assinatura {
+            background: #f6ede2;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 0 20px #d4c1b1;
+        }
+        .assinatura h2 {
+            margin-bottom: 25px;
+            color: #593d27;
+            text-align: center;
+        }
+        .assinatura p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .planos {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .plano {
+            background: #d9c6b1;
+            padding: 20px 25px;
+            border-radius: 10px;
+            flex: 1 1 250px;
+            box-shadow: inset 0 0 10px #b29a7d;
+            transition: background 0.3s ease;
+        }
+        .plano:hover {
+            background: #c7b194;
+        }
+        .plano h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #422d19;
+        }
+        .plano ul {
+            list-style-type: none;
+            padding-left: 0;
+            font-size: 1rem;
+            color: #3f2d17;
+        }
+        .plano ul li {
+            margin-bottom: 10px;
+            padding-left: 18px;
+            position: relative;
+        }
+        .plano ul li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: #6b4f26;
+            font-weight: bold;
+        }
+        .preco-plano {
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-top: 18px;
+            text-align: center;
+            color: #3e2a0d;
+        }
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #6d5840;
+        }
+        /* Responsividade */
+        @media(max-width: 700px) {
+            .flex-row {
+                flex-direction: column;
+            }
+            .planos {
+                flex-direction: column;
+                gap: 20px;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Café da Roça</h1>
+        <div class="flex-row">
+            <div class="flex-column">
+                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Café artesanal" />
+            </div>
+            <div class="flex-column">
+                <h2>Assinatura de Café Artesanal</h2>
+                <p>Conheça o serviço de assinatura do Café da Roça, que traz o melhor café artesanal de pequenos produtores direto para sua casa. Nossa curadoria garante qualidade, frescor e sabor que você merece.</p>
+                <p>Com assinaturas flexíveis, você escolhe a frequência e o tipo de café, desfrutando de uma experiência única e sustentável.</p>
+            </div>
+        </div>
 
-<header>
-  <h1>Café da Roça</h1>
-</header>
+        <section class="cardapio">
+            <h2>Cardápio de Cafés</h2>
+            <div class="cardapio-item">
+                <span class="nome">Café do Vale - Torrado médio</span>
+                <span class="preco">R$ 25,00 / 250g</span>
+            </div>
+            <div class="cardapio-item">
+                <span class="nome">Café da Montanha - Torrado escuro</span>
+                <span class="preco">R$ 28,00 / 250g</span>
+            </div>
+            <div class="cardapio-item">
+                <span class="nome">Café Orgânico - Grãos selecionados</span>
+                <span class="preco">R$ 30,00 / 250g</span>
+            </div>
+            <div class="cardapio-item">
+                <span class="nome">Blend Especial da Roça</span>
+                <span class="preco">R$ 35,00 / 250g</span>
+            </div>
+            <div class="cardapio-item">
+                <span class="nome">Café Solúvel Artesanal</span>
+                <span class="preco">R$ 20,00 / 100g</span>
+            </div>
+            <div class="cardapio-item">
+                <span class="nome">Café Descafeinado Natural</span>
+                <span class="preco">R$ 32,00 / 250g</span>
+            </div>
+            <div class="cardapio-item">
+                <span class="nome">Café Premium Especial</span>
+                <span class="preco">R$ 45,00 / 250g</span>
+            </div>
+        </section>
 
-<nav>
-  <a href="#sobre">Sobre</a>
-  <a href="#galeria">Galeria</a>
-  <a href="#cardapio">Cardápio</a>
-  <a href="#assinatura">Assinatura</a>
-</nav>
+        <section class="assinatura">
+            <h2>Planos de Assinatura</h2>
+            <p>Oferecemos planos semestrais para você experimentar e aproveitar nosso café artesanal com vantagens exclusivas.</p>
+            <div class="planos">
+                <div class="plano">
+                    <h3>Assinatura Semestral Básica</h3>
+                    <ul>
+                        <li>Entrega quinzenal de 250g de café</li>
+                        <li>Acesso a blends exclusivos</li>
+                        <li>Desconto de 5% em compras avulsas</li>
+                        <li>Envio gratuito para a sua região</li>
+                        <li>Suporte via WhatsApp</li>
+                    </ul>
+                    <p class="preco-plano">R$ 135,00 por semestre</p>
+                </div>
+                <div class="plano">
+                    <h3>Assinatura Semestral Premium</h3>
+                    <ul>
+                        <li>Entrega semanal de 250g de café</li>
+                        <li>Seleção especial de cafés orgânicos</li>
+                        <li>Desconto de 10% em compras avulsas</li>
+                        <li>Envio gratuito e brindes exclusivos</li>
+                        <li>Consultoria personalizada de degustação</li>
+                    </ul>
+                    <p class="preco-plano">R$ 270,00 por semestre</p>
+                </div>
+                <div class="plano">
+                    <h3>Assinatura Semestral Deluxe</h3>
+                    <ul>
+                        <li>Entrega semanal de 500g de cafés especiais</li>
+                        <li>Visitas guiadas virtuais às fazendas parceiras</li>
+                        <li>Desconto de 15% em todo o site</li>
+                        <li>Caixa surpresa mensal com acessórios</li>
+                        <li>Suporte exclusivo 24h</li>
+                    </ul>
+                    <p class="preco-plano">R$ 480,00 por semestre</p>
+                </div>
+            </div>
 
-<main>
+            <h3>Detalhes do Semestre</h3>
+            <p>Cada semestre possui duração de 6 meses, totalizando 24 semanas para os planos básicos e premium, e 24 entregas para o plano deluxe. Você pode pausar, trocar ou cancelar sua assinatura a qualquer momento, com aviso prévio de 15 dias.</p>
+            <p>Além disso, ao assinar, você apoia diretamente pequenos produtores locais, promove a sustentabilidade e valoriza o trabalho artesanal.</p>
+            <p>Queremos que sua experiência seja completa, por isso oferecemos canais de feedback e sugestões para personalizar ainda mais seu café.</p>
+        </section>
 
-  <!-- Sobre -->
-  <section id="sobre">
-    <h2>Sobre o Café da Roça</h2>
-    <p>
-      O Café da Roça nasce da paixão pelos pequenos produtores brasileiros e pela arte do café artesanal.
-      Nosso compromisso é levar até você cafés selecionados, colhidos manualmente e torrados com cuidado,
-      para entregar aroma, sabor e qualidade que só a dedicação faz acontecer.
-    </p>
-  </section>
-
-  <!-- Galeria -->
-  <section id="galeria">
-    <h2>Galeria</h2>
-    <div class="imagens">
-      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80" alt="Grãos de café" />
-      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="Xícara de café" />
-      <img src="https://images.unsplash.com/photo-1529257414770-39d9c914d8ee?auto=format&fit=crop&w=400&q=80" alt="Torrando café" />
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Café coado" />
+        <footer>
+            <p>Café da Roça &copy; 2025 - Todos os direitos reservados</p>
+            <p>Contato: contato@cafedaroça.com.br | (11) 98765-4321</p>
+        </footer>
     </div>
-  </section>
-
-  <!-- Cardápio -->
-  <section id="cardapio">
-    <h2>Cardápio</h2>
-    <div class="cards">
-      <div class="card-item">
-        <h3>Café Tradicional</h3>
-        <p>Blend clássico, com sabor equilibrado e aroma intenso.</p>
-        <p class="preco">R$ 18,00 / 250g</p>
-      </div>
-      <div class="card-item">
-        <h3>Café Especial da Roça</h3>
-        <p>Grãos selecionados da melhor safra, torrados lentamente.</p>
-        <p class="preco">R$ 25,00 / 250g</p>
-      </div>
-      <div class="card-item">
-        <h3>Café Orgânico</h3>
-        <p>Produzido sem agrotóxicos, com sabor puro e natural.</p>
-        <p class="preco">R$ 28,00 / 250g</p>
-      </div>
-      <div class="card-item">
-        <h3>Café Descafeinado</h3>
-        <p>Para quem quer aproveitar o sabor sem cafeína.</p>
-        <p class="preco">R$ 26,00 / 250g</p>
-      </div>
-      <div class="card-item">
-        <h3>Café Moído na Hora</h3>
-        <p>Moagem fresca para preparo imediato.</p>
-        <p class="preco">R$ 20,00 / 250g</p>
-      </div>
-      <div class="card-item">
-        <h3>Café Gourmet Exportação</h3>
-        <p>Grãos premium com perfil aromático complexo.</p>
-        <p class="preco">R$ 40,00 / 250g</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Assinatura -->
-  <section id="assinatura">
-    <h2>Assinatura de Café Artesanal</h2>
-    <p class="intro">
-      Assine o melhor café artesanal do Brasil, direto de pequenos produtores para sua casa. Escolha entre nossos planos semestrais e aproveite cafés selecionados, exclusivos e fresquinhos entregues todo mês.
-    </p>
-
-    <div class="planos">
-      <!-- Plano 1º Semestre -->
-      <div class="plano">
-        <h3>1º Semestre</h3>
-        <p class="desc">
-          6 meses de assinatura, com entregas mensais e cafés variados da safra.
-        </p>
-        <ul>
-          <li>1 pacote de café artesanal por mês (250g)</li>
-          <li>Brindes exclusivos a cada 3 meses</li>
-          <li>Desconto especial para renovação</li>
-          <li>Frete grátis para todo o Brasil</li>
-        </ul>
-        <p class="preco">R$ 180,00 por semestre</p>
-        <button>Assinar 1º Semestre</button>
-      </div>
-
-      <!-- Plano 2º Semestre -->
-      <div class="plano">
-        <h3>2º Semestre</h3>
-        <p class="desc">
-          Aproveite os cafés especiais da segunda safra do ano, direto para você.
-        </p>
-        <ul>
-          <li>1 pacote de café artesanal por mês (250g)</li>
-          <li>Brindes exclusivos a cada 3 meses</li>
-          <li>Desconto especial para renovação</li>
-          <li>Frete grátis para todo o Brasil</li>
-        </ul>
-        <p class="preco">R$ 190,00 por semestre</p>
-        <button>Assinar 2º Semestre</button>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  Café da Roça &copy; 2025 - Todos os direitos reservados.
-</footer>
-
 </body>
 </html>
