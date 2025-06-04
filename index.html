@@ -1,454 +1,214 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Café da Roça - Assinatura de Café</title>
-<style>
-  /* Reset básico */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café da Roça - Assinatura Artesanal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* RESET */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      background-color: #f2e3c6;
+      color: #3e2e1f;
+      line-height: 1.6;
+    }
 
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #f5f1e7 0%, #d1c4a1 100%);
-    color: #4b3b2b;
-    line-height: 1.6;
-    padding: 20px;
-  }
+    header {
+      background-color: #7b5e43;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
 
-  header {
-    background: #6b4f32;
-    color: #fff;
-    padding: 25px 20px;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    font-family: 'Georgia', serif;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    box-shadow: 0 5px 10px rgba(107,79,50,.4);
-  }
+    nav {
+      background-color: #5b4430;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #ffe6c7;
+    }
 
-  nav {
-    background: #d4b483;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 15px 0;
-    border-radius: 10px;
-    margin-bottom: 40px;
-    box-shadow: inset 0 0 10px #a9835f;
-  }
+    .section {
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    .section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .section p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
-  nav a {
-    color: #4b3b2b;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
-  }
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .galeria img {
+      width: 100%;
+      border-radius: 8px;
+    }
 
-  nav a:hover {
-    color: #6b4f32;
-    text-decoration: underline;
-  }
+    .cardapio {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .item {
+      background-color: #fff8e6;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .item img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .item h3 {
+      margin-top: 0.5rem;
+    }
 
-  main {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+    .botao-topo {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #7b5e43;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
 
-  section {
-    background: #fff;
-    border-radius: 15px;
-    padding: 30px 40px;
-    margin-bottom: 50px;
-    box-shadow: 0 5px 15px rgba(107,79,50,0.2);
-  }
+    .contato {
+      background-color: #e9d8b3;
+      padding: 2rem;
+      text-align: center;
+    }
 
-  section h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #6b4f32;
-    font-weight: 800;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-family: 'Georgia', serif;
-  }
+    footer {
+      background-color: #5b4430;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
 
-  /* Assinatura - alinhamento e texto */
-  #assinatura p {
-    font-size: 1.15rem;
-    margin-bottom: 15px;
-    text-align: justify;
-  }
-
-  #assinatura img {
-    display: block;
-    max-width: 280px;
-    margin: 20px auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(107,79,50,.3);
-  }
-
-  /* Cardápio */
-  #cardapio {
-    text-align: center;
-  }
-
-  .cardapio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
-    gap: 25px;
-    margin-top: 25px;
-  }
-
-  .cardapio-item {
-    background: #f8f4e6;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 3px 8px rgba(107,79,50,0.15);
-    font-weight: 600;
-    font-size: 1.15rem;
-    position: relative;
-  }
-
-  .cardapio-item button {
-    margin-top: 12px;
-    background: #6b4f32;
-    border: none;
-    color: #fff;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .cardapio-item button:hover {
-    background: #513d27;
-  }
-
-  /* Semestres interativos */
-  #semestres {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .semestre-btn {
-    background: #6b4f32;
-    color: #fff;
-    border: none;
-    padding: 15px 22px;
-    margin: 12px 0;
-    font-size: 1.2rem;
-    border-radius: 12px;
-    width: 100%;
-    cursor: pointer;
-    font-weight: 700;
-    transition: background-color 0.3s ease;
-  }
-
-  .semestre-btn:hover {
-    background: #513d27;
-  }
-
-  .semestre-info {
-    background: #f8f4e6;
-    border-radius: 12px;
-    padding: 18px 20px;
-    margin-top: 10px;
-    display: none;
-    box-shadow: 0 3px 8px rgba(107,79,50,0.15);
-    font-size: 1rem;
-    color: #4b3b2b;
-    line-height: 1.5;
-  }
-
-  /* Galeria */
-  #galeria {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  #galeria img {
-    max-width: 220px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(107,79,50,.3);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-
-  #galeria img:hover {
-    transform: scale(1.05);
-  }
-
-  /* Contato e participantes */
-  #contato {
-    text-align: center;
-    font-size: 1.2rem;
-    margin-top: 30px;
-    font-weight: 700;
-  }
-
-  #participantes {
-    text-align: center;
-    font-style: italic;
-    font-weight: 600;
-    color: #6b4f32;
-    margin-top: 5px;
-  }
-
-  /* Botão voltar ao topo */
-  #topBtn {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    background: #6b4f32;
-    color: white;
-    border: none;
-    padding: 14px 18px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(107,79,50,.6);
-    display: none;
-    z-index: 999;
-    transition: background-color 0.3s ease;
-  }
-
-  #topBtn:hover {
-    background: #513d27;
-  }
-
-  /* Carrinho simples */
-  #carrinho {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #d4b483;
-    border-radius: 15px;
-    padding: 15px 25px;
-    box-shadow: 0 5px 15px rgba(107,79,50,0.3);
-    width: 320px;
-    max-height: 420px;
-    overflow-y: auto;
-    font-weight: 700;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-
-  #carrinho h3 {
-    text-align: center;
-    margin-bottom: 15px;
-    font-size: 1.5rem;
-    color: #4b3b2b;
-  }
-
-  #carrinho ul {
-    list-style: none;
-  }
-
-  #carrinho ul li {
-    background: #f8f4e6;
-    margin-bottom: 12px;
-    padding: 10px 15px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  #carrinho ul li button {
-    background: #6b4f32;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 4px 10px;
-    cursor: pointer;
-    font-weight: 700;
-  }
-
-  #carrinho ul li button:hover {
-    background: #513d27;
-  }
-
-  #carrinho-total {
-    font-weight: 800;
-    text-align: right;
-    margin-top: 15px;
-    font-size: 1.2rem;
-  }
-</style>
+    .semestres {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .semestre-btn {
+      background-color: #7b5e43;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .semestre-btn:hover {
+      background-color: #5b4430;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  Café da Roça - Assinatura de Café Artesanal
-</header>
+  <header>
+    <h1>Café da Roça</h1>
+    <p>Assinatura de Café Artesanal - Sabores do Campo</p>
+  </header>
 
-<nav>
-  <a href="#assinatura">Assinatura</a>
-  <a href="#cardapio">Cardápio</a>
-  <a href="#semestres">Semestres</a>
-  <a href="#galeria">Galeria</a>
-  <a href="#contato">Contato</a>
-</nav>
+  <nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#cardapio">Cardápio</a>
+    <a href="#assinatura">Assinatura</a>
+    <a href="#contato">Contato</a>
+  </nav>
 
-<main>
-
-  <section id="assinatura">
-    <h2>Assinatura de Café Artesanal</h2>
-    <p>Nosso serviço de assinatura oferece cafés selecionados dos melhores pequenos produtores da região. Cada lote é cuidadosamente escolhido para garantir qualidade, sabor e frescor incomparáveis.</p>
-    <p>Você pode escolher a duração da assinatura, que pode ser trimestral, semestral ou anual, com vantagens exclusivas em cada plano.</p>
-    <p>A entrega é feita diretamente na sua casa, com embalagens sustentáveis e artesanais que refletem nosso compromisso com o meio ambiente.</p>
-    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Café artesanal">
+  <section class="section" id="sobre">
+    <h2>Sobre o Projeto</h2>
+    <p>Este projeto é uma proposta de assinatura de café artesanal conectando consumidores a pequenos produtores das regiões do Brasil. O layout foi inspirado no campo, trazendo elementos como papel kraft, fotos rústicas e tipografia marcante. João Gabriel e Miguel Gabriel participaram ativamente neste projeto durante o semestre letivo de 2025/1 na disciplina de Design Digital.</p>
   </section>
 
-  <section id="cardapio">
-    <h2>Cardápio de Cafés</h2>
-    <div class="cardapio-grid">
-      <div class="cardapio-item">
-        <div><strong>Café Sul Minas</strong></div>
-        <div>Notas de chocolate e caramelo</div>
-        <button onclick="addToCart('Café Sul Minas', 35)">Adicionar ao carrinho - R$35</button>
-      </div>
-      <div class="cardapio-item">
-        <div><strong>Café Cerrado Mineiro</strong></div>
-        <div>Frutas vermelhas e corpo intenso</div>
-        <button onclick="addToCart('Café Cerrado Mineiro', 40)">Adicionar ao carrinho - R$40</button>
-      </div>
-      <div class="cardapio-item">
-        <div><strong>Café Mantiqueira</strong></div>
-        <div>Toques florais e acidez equilibrada</div>
-        <button onclick="addToCart('Café Mantiqueira', 38)">Adicionar ao carrinho - R$38</button>
-      </div>
-      <div class="cardapio-item">
-        <div><strong>Café Chapada Diamantina</strong></div>
-        <div>Sabor frutado e doce</div>
-        <button onclick="addToCart('Café Chapada Diamantina', 42)">Adicionar ao carrinho - R$42</button>
-      </div>
-      <div class="cardapio-item">
-        <div><strong>Café Alta Mogiana</strong></div>
-        <div>Notas de nozes e caramelo</div>
-        <button onclick="addToCart('Café Alta Mogiana', 37)">Adicionar ao carrinho - R$37</button>
-      </div>
-      <div class="cardapio-item">
-        <div><strong>Café Fazenda Real</strong></div>
-        <div>Perfil intenso e encorpado</div>
-        <button onclick="addToCart('Café Fazenda Real', 39)">Adicionar ao carrinho - R$39</button>
-      </div>
-    </div>
-  </section>
-
-  <section id="semestres">
-    <h2>Opções de Semestre</h2>
-    <button class="semestre-btn" onclick="toggleInfo('semestre1')">Semestre 1</button>
-    <div id="semestre1" class="semestre-info">
-      <p>Assinatura Semestral 1: Entregas mensais de cafés com notas de chocolate, caramelo e frutas secas. Inclui brindes exclusivos e um desconto especial de 5% no valor total.</p>
-      <p>Receba 6 entregas durante o semestre com cafés selecionados especialmente para esta época do ano, garantindo frescor e sabores únicos.</p>
-    </div>
-    <button class="semestre-btn" onclick="toggleInfo('semestre2')">Semestre 2</button>
-    <div id="semestre2" class="semestre-info">
-      <p>Assinatura Semestral 2: Entregas mensais com cafés de perfil mais frutado e floral, perfeito para os amantes de aromas mais suaves e delicados.</p>
-      <p>Inclui acesso a workshops online sobre preparo de café e descontos exclusivos em eventos da marca.</p>
-    </div>
-  </section>
-
-  <section id="galeria">
+  <section class="section" id="galeria">
     <h2>Galeria</h2>
-    <img src="https://images.unsplash.com/photo-1523475496153-3b1d22a4a0e7?auto=format&fit=crop&w=400&q=80" alt="Grãos de café">
-    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80" alt="Xícara de café">
-    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=400&q=80" alt="Fazenda de café">
-    <img src="https://images.unsplash.com/photo-1526366003456-cf19e3ff4f7f?auto=format&fit=crop&w=400&q=80" alt="Processo de torrefação">
-    <img src="https://images.unsplash.com/photo-1464375117522-1311ac6a96c9?auto=format&fit=crop&w=400&q=80" alt="Colheita do café">
+    <div class="galeria">
+      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348" alt="Grãos de café">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="Café artesanal">
+      <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187" alt="Fazenda de café">
+      <img src="https://images.unsplash.com/photo-1605470634745-f473d66c0abf" alt="Café com pão de queijo">
+    </div>
   </section>
 
-  <section id="contato">
-    <h2>Contato</h2>
-    <p>Telefone/WhatsApp: <a href="tel:+5544997591110" style="color:#6b4f32; font-weight:700;">(44) 99759-1110</a></p>
-    <p id="participantes">Participantes: João Gabriel e Miguel Gabriel</p>
+  <section class="section" id="cardapio">
+    <h2>Nosso Cardápio</h2>
+    <div class="cardapio">
+      <div class="item">
+        <img src="https://images.unsplash.com/photo-1553621042-f6e147245754" alt="Café coado">
+        <h3>Café Coado</h3>
+        <p>Feito com grãos selecionados, servido quentinho na hora.</p>
+      </div>
+      <div class="item">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085" alt="Café Expresso">
+        <h3>Expresso</h3>
+        <p>O clássico, forte e marcante. Extraído com perfeição.</p>
+      </div>
+      <div class="item">
+        <img src="https://images.unsplash.com/photo-1532634896-26909d0d4b9a" alt="Cappuccino">
+        <h3>Cappuccino</h3>
+        <p>Espuma cremosa com toque de canela.</p>
+      </div>
+      <div class="item">
+        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd" alt="Latte">
+        <h3>Latte</h3>
+        <p>Equilíbrio entre leite vaporizado e café espresso.</p>
+      </div>
+    </div>
   </section>
 
-</main>
+  <section class="section" id="assinatura">
+    <h2>Assinatura de Café</h2>
+    <p>Você pode assinar e receber todo mês cafés exclusivos de pequenos produtores, com fichas técnicas, mapas das regiões produtoras e curiosidades. É uma experiência sensorial, educativa e solidária.</p>
+    <div class="semestres">
+      <button class="semestre-btn">1º Semestre - Introdução ao Café</button>
+      <button class="semestre-btn">2º Semestre - Sabores Regionais</button>
+      <button class="semestre-btn">3º Semestre - Harmonização com Alimentos</button>
+      <button class="semestre-btn">4º Semestre - Rituais e Cultura</button>
+    </div>
+  </section>
 
-<!-- Botão voltar ao topo -->
-<button id="topBtn" title="Voltar ao topo" onclick="topFunction()">↑</button>
+  <section class="contato" id="contato">
+    <h2>Fale Conosco</h2>
+    <p>📞 WhatsApp: <a href="https://wa.me/554499759110" target="_blank">(44) 99759-1110</a></p>
+    <p>👨‍💻 Projeto por João Gabriel e Miguel Gabriel</p>
+  </section>
 
-<!-- Carrinho simples -->
-<div id="carrinho">
-  <h3>Carrinho</h3>
-  <ul id="carrinho-lista"></ul>
-  <div id="carrinho-total">Total: R$ 0,00</div>
-</div>
+  <footer>
+    <p>&copy; 2025 Café da Roça - Todos os direitos reservados.</p>
+  </footer>
 
-<script>
-  // Mostrar/esconder infos semestre
-  function toggleInfo(id) {
-    const el = document.getElementById(id);
-    if(el.style.display === 'block'){
-      el.style.display = 'none';
-    } else {
-      el.style.display = 'block';
-      // esconder outros
-      ['semestre1','semestre2'].forEach(sid => {
-        if(sid !== id){
-          document.getElementById(sid).style.display = 'none';
-        }
-      });
-    }
-  }
-
-  // Carrinho simples
-  const carrinho = [];
-  function addToCart(nome, preco) {
-    carrinho.push({nome, preco});
-    atualizarCarrinho();
-    alert(nome + ' adicionado ao carrinho!');
-  }
-
-  function atualizarCarrinho() {
-    const lista = document.getElementById('carrinho-lista');
-    const totalEl = document.getElementById('carrinho-total');
-    lista.innerHTML = '';
-    let total = 0;
-    carrinho.forEach((item, index) => {
-      total += item.preco;
-      const li = document.createElement('li');
-      li.textContent = `${item.nome} - R$${item.preco.toFixed(2)}`;
-      const btnRemover = document.createElement('button');
-      btnRemover.textContent = 'X';
-      btnRemover.onclick = () => {
-        carrinho.splice(index,1);
-        atualizarCarrinho();
-      };
-      li.appendChild(btnRemover);
-      lista.appendChild(li);
-    });
-    totalEl.textContent = 'Total: R$ ' + total.toFixed(2);
-  }
-
-  // Botão voltar ao topo
-  const topBtn = document.getElementById("topBtn");
-  window.onscroll = function() {scrollFunction()};
-  function scrollFunction() {
-    if(document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-      topBtn.style.display = "block";
-    } else {
-      topBtn.style.display = "none";
-    }
-  }
-  function topFunction() {
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }
-</script>
-
+  <button class="botao-topo" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</button>
 </body>
 </html>
