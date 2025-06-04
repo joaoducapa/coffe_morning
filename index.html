@@ -18,6 +18,7 @@
       color: #4b3b2b;
       line-height: 1.6;
       padding: 20px;
+      text-align: center; /* Centralizar texto geral */
     }
     header {
       background: rgba(255 255 255 / 0.8);
@@ -25,15 +26,15 @@
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
       margin-bottom: 30px;
+      text-align: center;
     }
     header h1 {
       font-size: 3rem;
       font-weight: 900;
       letter-spacing: 2px;
       color: #6b4c3b;
-      text-align: center;
-      margin-bottom: 10px;
       font-family: 'Georgia', serif;
+      margin-bottom: 10px;
     }
     nav {
       text-align: center;
@@ -95,13 +96,13 @@
       max-width: 900px;
       margin: 0 auto 40px auto;
       box-shadow: 0 0 25px rgba(0,0,0,0.1);
+      text-align: center; /* Centralizar conteúdo */
     }
     section h2 {
       font-family: 'Georgia', serif;
       font-size: 2.5rem;
       color: #6b4c3b;
       margin-bottom: 25px;
-      text-align: center;
       letter-spacing: 1.5px;
     }
 
@@ -110,9 +111,11 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 20px;
+      justify-items: center;
     }
     .gallery img {
       width: 100%;
+      max-width: 280px;
       border-radius: 10px;
       box-shadow: 0 6px 15px rgba(0,0,0,0.15);
       transition: transform 0.3s ease;
@@ -126,15 +129,19 @@
     .menu-list {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 25px;
+      align-items: center; /* Centralizar itens */
     }
     .menu-item {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 25px;
       border-bottom: 1px solid #d1bfa7;
       padding-bottom: 15px;
       font-size: 1.25rem;
+      max-width: 650px;
+      width: 100%;
+      justify-content: center; /* Centralizar horizontal */
     }
     .menu-item img {
       width: 110px;
@@ -142,11 +149,13 @@
       object-fit: cover;
       border-radius: 8px;
       box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      flex-shrink: 0;
     }
     .menu-item h3 {
       flex: 1;
       color: #70492f;
       font-weight: 700;
+      text-align: left;
     }
     .price {
       color: #b27b47;
@@ -157,7 +166,7 @@
     .add-to-cart {
       background-color: #b27b47;
       border: none;
-      padding: 8px 16px;
+      padding: 8px 18px;
       border-radius: 8px;
       color: white;
       font-weight: 600;
@@ -188,6 +197,7 @@
       position: relative;
       font-size: 1.2rem;
       color: #4b3b2b;
+      text-align: center;
     }
     #cart-modal .close-modal {
       position: absolute;
@@ -210,6 +220,7 @@
       border-top: 1px solid #d1bfa7;
       border-bottom: 1px solid #d1bfa7;
       padding: 10px 0;
+      text-align: left;
     }
     #cart-items li {
       display: flex;
@@ -221,7 +232,6 @@
       font-size: 1.3rem;
       font-weight: 700;
       margin-bottom: 20px;
-      text-align: right;
       color: #70492f;
     }
     #checkout-btn {
@@ -266,47 +276,42 @@
 
     /* Formulários */
     form {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      max-width: 480px;
+      max-width: 450px;
       margin: 0 auto;
-      font-size: 1.15rem;
-      color: #4b3b2b;
+      text-align: left;
     }
     label {
+      display: block;
+      margin-bottom: 6px;
       font-weight: 600;
+      color: #6b4c3b;
     }
     input[type="text"],
     input[type="email"],
-    select,
     textarea {
-      padding: 12px 14px;
-      border-radius: 10px;
-      border: 2px solid #b27b47;
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 18px;
+      border: 2px solid #d1bfa7;
+      border-radius: 8px;
       font-size: 1rem;
       font-family: inherit;
-      resize: vertical;
+      transition: border-color 0.3s ease;
     }
     input[type="text"]:focus,
     input[type="email"]:focus,
-    select:focus,
     textarea:focus {
+      border-color: #b27b47;
       outline: none;
-      border-color: #70492f;
-      background-color: #fff8ec;
-    }
-    textarea {
-      min-height: 120px;
     }
     button[type="submit"] {
       background-color: #b27b47;
       border: none;
+      padding: 12px 25px;
+      border-radius: 12px;
       color: white;
       font-weight: 700;
-      padding: 14px;
-      font-size: 1.3rem;
-      border-radius: 12px;
+      font-size: 1.1rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
@@ -317,229 +322,233 @@
 </head>
 <body>
 
-<header>
-  <h1>Café da Roça</h1>
-  <nav>
-    <div class="hamburguer" aria-label="Menu">
-      <div></div>
-      <div></div>
-      <div></div>
+  <header>
+    <h1>Café da Roça</h1>
+    <nav>
+      <div class="hamburguer" id="hamburguer">
+        <div></div><div></div><div></div>
+      </div>
+      <ul id="nav-list">
+        <li><a href="#gallery">Galeria</a></li>
+        <li><a href="#about">Sobre</a></li>
+        <li><a href="#menu">Cardápio</a></li>
+        <li><a href="#subscription">Assinatura</a></li>
+        <li><a href="#contact">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <button id="cart-btn" title="Ver carrinho">🛒 Carrinho</button>
+
+  <section id="gallery">
+    <h2>Galeria</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=60" alt="Xícara de café" />
+      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=60" alt="Grãos de café" />
+      <img src="https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&w=600&q=60" alt="Máquina de café" />
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=60" alt="Café com leite" />
     </div>
-    <ul>
-      <li><a href="#gallery">Galeria</a></li>
-      <li><a href="#menu">Cardápio</a></li>
-      <li><a href="#subscription">Assinatura</a></li>
-      <li><a href="#contact">Contato</a></li>
-    </ul>
-  </nav>
-</header>
+  </section>
 
-<button id="cart-btn" aria-label="Abrir carrinho">Carrinho 🛒</button>
+  <section id="about">
+    <h2>Sobre o Café da Roça</h2>
+    <p>O Café da Roça oferece um café artesanal feito com grãos selecionados de pequenos produtores. Nossa missão é entregar sabor, qualidade e uma experiência acolhedora para todos os amantes do café.</p>
+  </section>
 
-<!-- GALERIA -->
-<section id="gallery" aria-label="Galeria de fotos">
-  <h2>Galeria</h2>
-  <div class="gallery">
-    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Xícara de café na mesa de madeira" />
-    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80" alt="Grãos de café tostados" />
-    <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=600&q=80" alt="Colheita de café na fazenda" />
-    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Bule de café artesanal" />
+  <section id="menu">
+    <h2>Cardápio</h2>
+    <div class="menu-list">
+      <div class="menu-item" data-id="1">
+        <img src="https://images.unsplash.com/photo-1510626176961-4b0f25893f9a?auto=format&fit=crop&w=200&q=60" alt="Espresso" />
+        <h3>Espresso</h3>
+        <span class="price">R$ 6,50</span>
+        <button class="add-to-cart">Adicionar</button>
+      </div>
+      <div class="menu-item" data-id="2">
+        <img src="https://images.unsplash.com/photo-1523983309734-0a7ca86f21a3?auto=format&fit=crop&w=200&q=60" alt="Café com Leite" />
+        <h3>Café com Leite</h3>
+        <span class="price">R$ 8,00</span>
+        <button class="add-to-cart">Adicionar</button>
+      </div>
+      <div class="menu-item" data-id="3">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=200&q=60" alt="Cappuccino" />
+        <h3>Cappuccino</h3>
+        <span class="price">R$ 10,00</span>
+        <button class="add-to-cart">Adicionar</button>
+      </div>
+      <div class="menu-item" data-id="4">
+        <img src="https://images.unsplash.com/photo-1464306076886-16af3a11e368?auto=format&fit=crop&w=200&q=60" alt="Mocha" />
+        <h3>Mocha</h3>
+        <span class="price">R$ 11,00</span>
+        <button class="add-to-cart">Adicionar</button>
+      </div>
+      <div class="menu-item" data-id="5">
+        <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=200&q=60" alt="Latte" />
+        <h3>Latte</h3>
+        <span class="price">R$ 9,50</span>
+        <button class="add-to-cart">Adicionar</button>
+      </div>
+      <div class="menu-item" data-id="6">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=200&q=60" alt="Macchiato" />
+        <h3>Macchiato</h3>
+        <span class="price">R$ 9,00</span>
+        <button class="add-to-cart">Adicionar</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="subscription">
+    <h2>Assinatura de Café</h2>
+    <form id="subscription-form">
+      <label for="name-sub">Nome Completo</label>
+      <input type="text" id="name-sub" name="name" placeholder="Seu nome" required />
+
+      <label for="email-sub">Email</label>
+      <input type="email" id="email-sub" name="email" placeholder="Seu melhor email" required />
+
+      <button type="submit">Assinar</button>
+    </form>
+  </section>
+
+  <section id="contact">
+    <h2>Contato</h2>
+    <form id="contact-form">
+      <label for="name-contact">Nome</label>
+      <input type="text" id="name-contact" name="name" placeholder="Seu nome" required />
+
+      <label for="email-contact">Email</label>
+      <input type="email" id="email-contact" name="email" placeholder="Seu melhor email" required />
+
+      <label for="message-contact">Mensagem</label>
+      <textarea id="message-contact" name="message" rows="5" placeholder="Escreva sua mensagem" required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <!-- Modal do carrinho -->
+  <div id="cart-modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Seu Carrinho</h2>
+      <ul id="cart-items"></ul>
+      <p id="total">Total: R$ 0,00</p>
+      <button id="checkout-btn" disabled>Finalizar Compra</button>
+    </div>
   </div>
-</section>
 
-<!-- CARDÁPIO -->
-<section id="menu" aria-label="Cardápio de cafés">
-  <h2>Cardápio</h2>
-  <div class="menu-list">
-    <article class="menu-item" data-id="1">
-      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=240&q=80" alt="Café Espresso" />
-      <h3>Espresso</h3>
-      <span class="price">R$ 6,50</span>
-      <button class="add-to-cart">Adicionar</button>
-    </article>
-    <article class="menu-item" data-id="2">
-      <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=240&q=80" alt="Café com Leite" />
-      <h3>Café com Leite</h3>
-      <span class="price">R$ 8,00</span>
-      <button class="add-to-cart">Adicionar</button>
-    </article>
-    <article class="menu-item" data-id="3">
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=240&q=80" alt="Cappuccino" />
-      <h3>Cappuccino</h3>
-      <span class="price">R$ 10,00</span>
-      <button class="add-to-cart">Adicionar</button>
-    </article>
-  </div>
-</section>
+  <script>
+    // Menu hamburguer toggle para mobile
+    const hamburguer = document.getElementById('hamburguer');
+    const navList = document.getElementById('nav-list');
+    hamburguer.addEventListener('click', () => {
+      navList.classList.toggle('show');
+    });
 
-<!-- ASSINATURA -->
-<section id="subscription" aria-label="Formulário de assinatura">
-  <h2>Assine nosso Café</h2>
-  <form id="subscription-form" aria-describedby="subscription-desc">
-    <p id="subscription-desc" style="text-align:center; font-size:1.1rem; margin-bottom: 20px;">
-      Assine e receba cafés artesanais direto da roça em sua casa!
-    </p>
-    <label for="sub-name">Nome Completo</label>
-    <input type="text" id="sub-name" name="name" required placeholder="Seu nome completo" />
+    // Carrinho
+    const cartBtn = document.getElementById('cart-btn');
+    const modal = document.getElementById('cart-modal');
+    const closeModal = document.querySelector('.close-modal');
+    const cartItemsUl = document.getElementById('cart-items');
+    const totalPriceEl = document.getElementById('total');
+    const checkoutBtn = document.getElementById('checkout-btn');
 
-    <label for="sub-email">Email</label>
-    <input type="email" id="sub-email" name="email" required placeholder="seu@email.com" />
+    let cart = [];
 
-    <label for="plan">Plano</label>
-    <select id="plan" name="plan" required>
-      <option value="mensal">Mensal - R$ 120,00</option>
-      <option value="trimestral">Trimestral - R$ 340,00</option>
-      <option value="semestral">Semestral - R$ 650,00</option>
-    </select>
+    function addToCart(id, name, price) {
+      const existingItem = cart.find(item => item.id === id);
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cart.push({ id, name, price, quantity: 1 });
+      }
+      renderCartItems();
+      modal.style.display = 'block';
+    }
 
-    <button type="submit">Assinar Agora</button>
-  </form>
-</section>
+    function renderCartItems() {
+      cartItemsUl.innerHTML = '';
+      if (cart.length === 0) {
+        cartItemsUl.innerHTML = '<li>Seu carrinho está vazio.</li>';
+        totalPriceEl.textContent = 'Total: R$ 0,00';
+        checkoutBtn.disabled = true;
+        return;
+      }
 
-<!-- CONTATO -->
-<section id="contact" aria-label="Formulário de contato">
-  <h2>Fale Conosco</h2>
-  <form id="contact-form" aria-describedby="contact-desc">
-    <p id="contact-desc" style="text-align:center; font-size:1.1rem; margin-bottom: 20px;">
-      Dúvidas, sugestões ou elogios? Envie uma mensagem!
-    </p>
+      let total = 0;
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+        const li = document.createElement('li');
+        li.textContent = `${item.name} x${item.quantity}`;
+        const spanPrice = document.createElement('span');
+        spanPrice.textContent = `R$ ${(item.price * item.quantity).toFixed(2)}`;
+        li.appendChild(spanPrice);
+        cartItemsUl.appendChild(li);
+      });
+      totalPriceEl.textContent = `Total: R$ ${total.toFixed(2)}`;
+      checkoutBtn.disabled = false;
+    }
 
-    <label for="contact-name">Nome</label>
-    <input type="text" id="contact-name" name="name" required placeholder="Seu nome" />
+    cartBtn.addEventListener('click', () => {
+      modal.style.display = 'block';
+    });
 
-    <label for="contact-email">Email</label>
-    <input type="email" id="contact-email" name="email" required placeholder="seu@email.com" />
-
-    <label for="contact-message">Mensagem</label>
-    <textarea id="contact-message" name="message" required placeholder="Escreva sua mensagem aqui..."></textarea>
-
-    <button type="submit">Enviar Mensagem</button>
-  </form>
-</section>
-
-<!-- MODAL DO CARRINHO -->
-<div id="cart-modal" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-describedby="cart-desc">
-  <div class="modal-content">
-    <span class="close-modal" aria-label="Fechar">&times;</span>
-    <h2 id="cart-title" style="margin-bottom: 15px; text-align:center; font-family: 'Georgia', serif; color:#70492f;">Seu Carrinho</h2>
-    <ul id="cart-items"></ul>
-    <div id="total">Total: R$ <span id="total-price">0.00</span></div>
-    <button id="checkout-btn" disabled>Finalizar Compra</button>
-  </div>
-</div>
-
-<script>
-  // MENU HAMBURGUER
-  const hamburguer = document.querySelector('.hamburguer');
-  const navMenu = document.querySelector('nav ul');
-
-  hamburguer.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-  });
-
-  // CARRINHO - modal
-  const cartBtn = document.getElementById('cart-btn');
-  const modal = document.getElementById('cart-modal');
-  const closeModalBtn = document.querySelector('.close-modal');
-
-  cartBtn.addEventListener('click', () => {
-    modal.style.display = 'block';
-    renderCartItems();
-  });
-
-  closeModalBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
-
-  window.addEventListener('click', (e) => {
-    if (e.target === modal) {
+    closeModal.addEventListener('click', () => {
       modal.style.display = 'none';
-    }
-  });
-
-  // CARRINHO - gerenciamento dos itens
-  let cart = [];
-
-  const cartItemsUl = document.getElementById('cart-items');
-  const totalPriceEl = document.getElementById('total-price');
-  const checkoutBtn = document.getElementById('checkout-btn');
-
-  function addToCart(id, name, price) {
-    const existing = cart.find(item => item.id === id);
-    if (existing) {
-      existing.quantity++;
-    } else {
-      cart.push({ id, name, price, quantity: 1 });
-    }
-    alert(`${name} adicionado ao carrinho!`);
-    renderCartItems();
-  }
-
-  function renderCartItems() {
-    cartItemsUl.innerHTML = '';
-    if (cart.length === 0) {
-      cartItemsUl.innerHTML = '<li>Seu carrinho está vazio.</li>';
-      totalPriceEl.textContent = '0.00';
-      checkoutBtn.disabled = true;
-      return;
-    }
-
-    let total = 0;
-    cart.forEach(item => {
-      total += item.price * item.quantity;
-      const li = document.createElement('li');
-      li.textContent = `${item.name} x${item.quantity}`;
-      const spanPrice = document.createElement('span');
-      spanPrice.textContent = `R$ ${(item.price * item.quantity).toFixed(2)}`;
-      li.appendChild(spanPrice);
-      cartItemsUl.appendChild(li);
     });
-    totalPriceEl.textContent = total.toFixed(2);
-    checkoutBtn.disabled = false;
-  }
 
-  checkoutBtn.addEventListener('click', () => {
-    alert('Compra finalizada! Obrigado por comprar conosco :)');
-    cart = [];
-    modal.style.display = 'none';
-  });
-
-  // Botões "Adicionar" no cardápio
-  const addButtons = document.querySelectorAll('.add-to-cart');
-
-  const menuItems = {
-    1: { name: 'Espresso', price: 6.5 },
-    2: { name: 'Café com Leite', price: 8.0 },
-    3: { name: 'Cappuccino', price: 10.0 }
-  };
-
-  addButtons.forEach(button => {
-    button.addEventListener('click', e => {
-      const menuItem = e.target.closest('.menu-item');
-      const id = menuItem.getAttribute('data-id');
-      const item = menuItems[id];
-      addToCart(id, item.name, item.price);
+    window.addEventListener('click', e => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
     });
-  });
 
-  // Formulários
+    checkoutBtn.addEventListener('click', () => {
+      alert('Compra finalizada! Obrigado por comprar conosco :)');
+      cart = [];
+      modal.style.display = 'none';
+      renderCartItems();
+    });
 
-  // Assinatura
-  const subscriptionForm = document.getElementById('subscription-form');
-  subscriptionForm.addEventListener('submit', e => {
-    e.preventDefault();
-    alert('Obrigado por assinar nosso café! Entraremos em contato via email.');
-    subscriptionForm.reset();
-  });
+    // Botões "Adicionar" no cardápio
+    const addButtons = document.querySelectorAll('.add-to-cart');
 
-  // Contato
-  const contactForm = document.getElementById('contact-form');
-  contactForm.addEventListener('submit', e => {
-    e.preventDefault();
-    alert('Mensagem enviada com sucesso! Responderemos em breve.');
-    contactForm.reset();
-  });
-</script>
+    const menuItems = {
+      1: { name: 'Espresso', price: 6.5 },
+      2: { name: 'Café com Leite', price: 8.0 },
+      3: { name: 'Cappuccino', price: 10.0 },
+      4: { name: 'Mocha', price: 11.0 },
+      5: { name: 'Latte', price: 9.5 },
+      6: { name: 'Macchiato', price: 9.0 }
+    };
+
+    addButtons.forEach(button => {
+      button.addEventListener('click', e => {
+        const menuItem = e.target.closest('.menu-item');
+        const id = menuItem.getAttribute('data-id');
+        const item = menuItems[id];
+        addToCart(id, item.name, item.price);
+      });
+    });
+
+    // Formulários
+
+    // Assinatura
+    const subscriptionForm = document.getElementById('subscription-form');
+    subscriptionForm.addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Obrigado por assinar nosso café! Entraremos em contato via email.');
+      subscriptionForm.reset();
+    });
+
+    // Contato
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Mensagem enviada com sucesso! Responderemos em breve.');
+      contactForm.reset();
+    });
+  </script>
 
 </body>
 </html>
