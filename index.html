@@ -1,272 +1,530 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Café da Roça - Assinatura Artesanal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* Reset e box-sizing */
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
     body {
       font-family: 'Roboto', sans-serif;
-      background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
       background-color: #f2e3c6;
+      background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
       color: #3e2e1f;
       line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 60px; /* espaço pro footer */
     }
 
     header {
       background-color: #7b5e43;
-      color: white;
+      color: #fff;
+      width: 100%;
       padding: 2rem 1rem;
       text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0.3rem;
+      font-style: italic;
     }
 
     nav {
       background-color: #5b4430;
+      width: 100%;
       display: flex;
       justify-content: center;
       gap: 2rem;
-      padding: 1rem;
+      padding: 1rem 0;
       flex-wrap: wrap;
+      box-shadow: inset 0 -2px 5px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     nav a {
       color: white;
+      font-weight: 700;
       text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
-    nav a:hover {
+    nav a:hover,
+    nav a:focus {
+      background-color: #7b5e43;
       color: #ffe6c7;
+      outline: none;
     }
 
-    .section {
-      padding: 3rem 1rem;
+    main {
+      max-width: 1100px;
+      width: 100%;
+      padding: 2rem 1rem;
+    }
+
+    section {
+      margin-bottom: 4rem;
       text-align: center;
     }
-    .section h2 {
+    section h2 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
+      border-bottom: 3px solid #7b5e43;
+      padding-bottom: 0.3rem;
+      display: inline-block;
     }
-    .section p {
+    section p {
       font-size: 1.2rem;
-      max-width: 800px;
+      max-width: 700px;
       margin: 0 auto;
+      color: #4a3b24;
     }
 
-    .galeria, .cardapio {
+    /* Galeria */
+    .galeria {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 1.8rem;
       margin-top: 2rem;
-      padding: 0 1rem;
     }
-    .galeria img, .item img {
+    .galeria img {
       width: 100%;
-      border-radius: 8px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .galeria img:hover {
+      transform: scale(1.05);
     }
 
+    /* Cardápio */
+    .cardapio {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 1.8rem;
+      margin-top: 2rem;
+    }
     .item {
       background-color: #fff8e6;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      text-align: center;
+      transition: box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .item:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    }
+    .item img {
+      width: 100%;
       border-radius: 10px;
-      padding: 1rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 1rem;
+      object-fit: cover;
+      height: 180px;
     }
     .item h3 {
-      margin-top: 0.5rem;
+      font-size: 1.4rem;
+      margin-bottom: 0.6rem;
+      color: #6a4e27;
+    }
+    .item p {
+      flex-grow: 1;
+      font-size: 1rem;
+      color: #5a4532;
+      margin-bottom: 1rem;
+    }
+    .item .preco {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #7b5e43;
     }
 
-    .botao-topo {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #7b5e43;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 50%;
-      font-size: 1.5rem;
-      cursor: pointer;
-      z-index: 999;
-    }
-
-    .contato {
-      background-color: #e9d8b3;
-      padding: 2rem;
-      text-align: center;
-    }
-
-    footer {
-      background-color: #5b4430;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-
+    /* Botões semestre */
     .semestres {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
     .semestre-btn {
       background-color: #7b5e43;
       color: white;
-      padding: 10px 20px;
       border: none;
+      padding: 12px 25px;
+      font-size: 1.1rem;
       border-radius: 8px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
-    .semestre-btn:hover {
+    .semestre-btn:hover, .semestre-btn:focus {
       background-color: #5b4430;
+      outline: none;
+    }
+    .semestre-conteudo {
+      background-color: #fff8e6;
+      max-width: 700px;
+      margin: 1rem auto 3rem auto;
+      border-radius: 10px;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      display: none;
+      text-align: left;
+      color: #4a3b24;
+      font-size: 1.1rem;
+      line-height: 1.5;
     }
 
+    /* Carrinho */
     .carrinho {
-      margin-top: 3rem;
-      padding: 2rem;
       background-color: #fff8e6;
-      border-radius: 10px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 700px;
+      margin: 2rem auto;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      text-align: center;
     }
     .carrinho h3 {
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
+      color: #6a4e27;
+    }
+    .carrinho-lista {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      min-height: 60px;
+      color: #5a4532;
+      font-weight: 600;
     }
     .btn-add {
-      margin-top: 10px;
       background-color: #5b4430;
       color: white;
       border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
+      padding: 10px 18px;
+      border-radius: 8px;
       cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+    .btn-add:hover {
+      background-color: #7b5e43;
     }
 
-    /* Conteúdo adicional para preencher o restante até 2500 linhas */
-    .extra {
-      padding: 2rem;
-      background-color: #f6eddc;
-      margin-top: 2rem;
+    /* Botão voltar topo */
+    .botao-topo {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #7b5e43;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.8rem;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease;
+      z-index: 1000;
+    }
+    .botao-topo:hover {
+      background-color: #5b4430;
+    }
+
+    /* Seção contato */
+    .contato {
+      background-color: #e9d8b3;
+      padding: 2rem 1rem;
       text-align: center;
-    }
-    .extra h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .extra p {
+      border-radius: 12px;
       max-width: 700px;
-      margin: 0 auto;
-      font-size: 1.1rem;
+      margin: 3rem auto 2rem auto;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      font-size: 1.2rem;
+      color: #4a3b24;
+    }
+    .contato strong {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #5b4430;
+      color: white;
+      padding: 1.3rem;
+      width: 100%;
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: 1.1px;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.3);
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      section h2 {
+        font-size: 1.8rem;
+      }
+      nav {
+        gap: 1rem;
+      }
+      .semestre-btn {
+        padding: 10px 18px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
-<<<<<<< HEAD
-  <!-- CONTEÚDO MANTIDO COMO ESTAVA... -->
-  
-  <!-- Seções extras -->
-  <section class="extra">
-    <h2>Curiosidades sobre o Café</h2>
-    <p>Sabia que o café é a segunda bebida mais consumida do mundo, perdendo apenas para a água? Ele é cultivado em mais de 70 países, com destaque para o Brasil como maior produtor e exportador.</p>
-=======
   <header>
     <h1>Café da Roça</h1>
-    <p>Assinatura de Café Artesanal - Sabores do Campo</p>
+    <p>Assinatura artesanal de cafés especiais direto da fazenda para sua casa</p>
   </header>
 
   <nav>
     <a href="#sobre">Sobre</a>
     <a href="#galeria">Galeria</a>
     <a href="#cardapio">Cardápio</a>
-    <a href="#assinatura">Assinatura</a>
+    <a href="#semestres">Semestres</a>
+    <a href="#carrinho">Carrinho</a>
     <a href="#contato">Contato</a>
   </nav>
 
-  <section class="section" id="sobre">
-    <h2>Sobre o Projeto</h2>
-    <p>Este projeto é uma proposta de assinatura de café artesanal conectando consumidores a pequenos produtores das regiões do Brasil. O layout foi inspirado no campo, trazendo elementos como papel kraft, fotos rústicas e tipografia marcante. João Gabriel e Miguel Gabriel participaram ativamente neste projeto durante o semestre letivo de 2025/1 na disciplina de Design Digital. O projeto reflete os conhecimentos adquiridos durante o semestre e representa a união entre tecnologia e tradição.</p>
->>>>>>> 3322b72f89f472f989441c6b477e4eed988f7b43
-  </section>
+  <main>
 
-  <section class="extra">
-    <h2>Como Preparar o Café Perfeito</h2>
-    <p>Use água mineral ou filtrada, mantenha a proporção de 10g de café para cada 100ml de água, evite ferver a água e escolha moagens adequadas ao seu método.</p>
-  <section class="section" id="galeria">
-    <h2>Galeria</h2>
-    <div class="galeria">
-      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=60" alt="Grãos de café">
-      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=60" alt="Café artesanal">
-      <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=600&q=60" alt="Fazenda de café">
-      <img src="https://images.unsplash.com/photo-1605470634745-f473d66c0abf?auto=format&fit=crop&w=600&q=60" alt="Café com pão de queijo">
-    </div>
-  </section>
+    <section id="sobre">
+      <h2>Sobre o Café da Roça</h2>
+      <p>
+        O Café da Roça é uma assinatura artesanal que conecta você aos melhores cafés produzidos por pequenos produtores familiares do Brasil.
+        Nosso compromisso é entregar grãos selecionados, frescos e com toda a história da cultura cafeeira brasileira em cada pacote.
+      </p>
+      <p>
+        Valorizamos a tradição, a sustentabilidade e o sabor único que só um café produzido com carinho pode oferecer.
+      </p>
+    </section>
 
-<<<<<<< HEAD
-  <section class="extra">
-    <h2>Feedback dos Clientes</h2>
-    <p>"A melhor assinatura de café que já fiz! Grãos fresquinhos e sabores incríveis." - Ana Clara<br>"Me sinto mais conectado com a cultura cafeeira do Brasil." - Rafael Souza</p>
-=======
-  <section class="section" id="cardapio">
-    <h2>Nosso Cardápio</h2>
-    <div class="cardapio">
-      <div class="item">
-        <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=600&q=60" alt="Café coado">
-        <h3>Café Coado</h3>
-        <p>Feito com grãos selecionados, servido quentinho na hora.</p>
-        <button class="btn-add">Adicionar ao Carrinho</button>
+    <section id="galeria">
+      <h2>Galeria de Fotos</h2>
+      <div class="galeria">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Grãos de café" />
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=800&q=80" alt="Fazenda de café" />
+        <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?auto=format&fit=crop&w=800&q=80" alt="Xícara de café" />
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80" alt="Colheita de café" />
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Fazendeiro com café" />
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Café moído" />
       </div>
-      <div class="item">
-        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=60" alt="Café Expresso">
-        <h3>Expresso</h3>
-        <p>O clássico, forte e marcante. Extraído com perfeição.</p>
-        <button class="btn-add">Adicionar ao Carrinho</button>
-      </div>
-      <div class="item">
-        <img src="https://images.unsplash.com/photo-1532634896-26909d0d4b9a?auto=format&fit=crop&w=600&q=60" alt="Cappuccino">
-        <h3>Cappuccino</h3>
-        <p>Espuma cremosa com toque de canela.</p>
-        <button class="btn-add">Adicionar ao Carrinho</button>
-      </div>
-      <div class="item">
-        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=60" alt="Latte">
-        <h3>Latte</h3>
-        <p>Equilíbrio entre leite vaporizado e café espresso.</p>
-        <button class="btn-add">Adicionar ao Carrinho</button>
-      </div>
-    </div>
->>>>>>> 3322b72f89f472f989441c6b477e4eed988f7b43
-  </section>
+    </section>
 
-<<<<<<< HEAD
-  <section class="extra">
-    <h2>Prêmios e Reconhecimentos</h2>
-    <p>Projeto destaque na Mostra de Design Digital 2025. Finalista do Prêmio Jovem Inovador em Sustentabilidade e Tradição.</p>
-=======
-  <section class="carrinho">
-    <h3>🛒 Carrinho de Compras</h3>
-    <p>(Funcionalidade em desenvolvimento)</p>
-  </section>
+    <section id="cardapio">
+      <h2>Cardápio de Assinaturas</h2>
+      <div class="cardapio">
+        <div class="item">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Assinatura 3 meses" />
+          <h3>Assinatura 3 meses</h3>
+          <p>Receba cafés fresquinhos a cada mês durante 3 meses. Ideal para quem quer experimentar sabores variados.</p>
+          <p class="preco">R$ 150,00</p>
+          <button class="btn-add" data-produto="Assinatura 3 meses" data-preco="150">Adicionar ao Carrinho</button>
+        </div>
+        <div class="item">
+          <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80" alt="Assinatura 6 meses" />
+          <h3>Assinatura 6 meses</h3>
+          <p>Curta cafés especiais durante 6 meses com desconto e brindes exclusivos.</p>
+          <p class="preco">R$ 280,00</p>
+          <button class="btn-add" data-produto="Assinatura 6 meses" data-preco="280">Adicionar ao Carrinho</button>
+        </div>
+        <div class="item">
+          <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?auto=format&fit=crop&w=600&q=80" alt="Assinatura 12 meses" />
+          <h3>Assinatura 12 meses</h3>
+          <p>Aproveite um ano inteiro de cafés exclusivos com o melhor custo-benefício e surpresas no caminho.</p>
+          <p class="preco">R$ 540,00</p>
+          <button class="btn-add" data-produto="Assinatura 12 meses" data-preco="540">Adicionar ao Carrinho</button>
+        </div>
+        <div class="item">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Assinatura Semestral Plus" />
+          <h3>Assinatura Semestral Plus</h3>
+          <p>Para os apaixonados por café, assinatura diferenciada com cafés especiais de lotes pequenos e exclusivos.</p>
+          <p class="preco">R$ 320,00</p>
+          <button class="btn-add" data-produto="Assinatura Semestral Plus" data-preco="320">Adicionar ao Carrinho</button>
+        </div>
+        <div class="item">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" alt="Assinatura Degustação" />
+          <h3>Assinatura Degustação</h3>
+          <p>Assinatura rápida para experimentar os melhores cafés de pequenos produtores durante 1 mês.</p>
+          <p class="preco">R$ 60,00</p>
+          <button class="btn-add" data-produto="Assinatura Degustação" data-preco="60">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </section>
 
-  <section class="section" id="assinatura">
-    <h2>Assinatura de Café</h2>
-    <p>Você pode assinar e receber todo mês cafés exclusivos de pequenos produtores, com fichas técnicas, mapas das regiões produtoras e curiosidades. É uma experiência sensorial, educativa e solidária.</p>
-    <div class="semestres">
-      <button class="semestre-btn">1º Semestre - Introdução ao Café</button>
-      <button class="semestre-btn">2º Semestre - Sabores Regionais</button>
-      <button class="semestre-btn">3º Semestre - Harmonização com Alimentos</button>
-      <button class="semestre-btn">4º Semestre - Rituais e Cultura</button>
-    </div>
->>>>>>> 3322b72f89f472f989441c6b477e4eed988f7b43
-  </section>
+    <section id="semestres">
+      <h2>Informações dos Semestres</h2>
+      <div class="semestres">
+        <button class="semestre-btn" data-semestre="1">1º Semestre</button>
+        <button class="semestre-btn" data-semestre="2">2º Semestre</button>
+        <button class="semestre-btn" data-semestre="3">3º Semestre</button>
+        <button class="semestre-btn" data-semestre="4">4º Semestre</button>
+      </div>
+      <div id="conteudo-semestre" class="semestre-conteudo" tabindex="0">
+        <!-- Conteúdo dinâmico aparece aqui -->
+      </div>
+    </section>
+
+    <section id="carrinho" class="carrinho">
+      <h3>Seu Carrinho</h3>
+      <ul class="carrinho-lista" aria-live="polite" aria-label="Lista de itens no carrinho"></ul>
+      <p><strong>Total: R$ <span id="total">0,00</span></strong></p>
+      <button id="finalizar" class="btn-add" disabled>Finalizar Compra</button>
+    </section>
+
+    <section id="contato" class="contato">
+      <h2>Contato</h2>
+      <p>Telefone para atendimento: <strong>(11) 98765-4321</strong></p>
+      <p>João Gabriel Rodrigues Ferreira e Bianca Capudo FF</p>
+      <p>© 2025 Café da Roça. Todos os direitos reservados.</p>
+    </section>
+
+  </main>
+
+  <button class="botao-topo" aria-label="Voltar ao topo" title="Voltar ao topo">&uarr;</button>
 
   <footer>
-    <p>&copy; 2025 Café da Roça - Todos os direitos de João Gabriel, Miguel Gabriel.</p>
+    Desenvolvido por João Gabriel Rodrigues Ferreira e Bianca Capudo FF | Semestre 2025.1
   </footer>
 
-  <button class="botao-topo" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">↑</button>
+  <script>
+    // Botão voltar ao topo
+    const botaoTopo = document.querySelector('.botao-topo');
+    botaoTopo.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Conteúdos dos semestres
+    const textosSemestres = {
+      1: `
+        <h3>1º Semestre</h3>
+        <p>Início da jornada com foco em agricultura sustentável e cultivo do café orgânico.</p>
+        <ul>
+          <li>Plantio manual e cuidado especial com mudas.</li>
+          <li>Utilização de técnicas tradicionais para preservar o solo.</li>
+          <li>Educação ambiental e valorização do produtor familiar.</li>
+        </ul>
+      `,
+      2: `
+        <h3>2º Semestre</h3>
+        <p>Fase de colheita e preparo dos grãos para torra.</p>
+        <ul>
+          <li>Colheita seletiva dos melhores frutos.</li>
+          <li>Secagem natural ao sol para manter aroma e sabor.</li>
+          <li>Início da torra artesanal em pequenos lotes.</li>
+        </ul>
+      `,
+      3: `
+        <h3>3º Semestre</h3>
+        <p>Distribuição e início da assinatura para clientes.</p>
+        <ul>
+          <li>Envio dos primeiros pacotes para assinantes.</li>
+          <li>Feedback e ajuste da seleção dos grãos.</li>
+          <li>Criação de conteúdo para aproximar clientes da história do café.</li>
+        </ul>
+      `,
+      4: `
+        <h3>4º Semestre</h3>
+        <p>Expansão e aprimoramento da experiência do assinante.</p>
+        <ul>
+          <li>Introdução de blends exclusivos.</li>
+          <li>Parcerias com outros pequenos produtores.</li>
+          <li>Eventos online para degustação e aprendizado.</li>
+        </ul>
+      `
+    };
+
+    const btnSemestres = document.querySelectorAll('.semestre-btn');
+    const conteudoSemestre = document.getElementById('conteudo-semestre');
+
+    btnSemestres.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sem = btn.getAttribute('data-semestre');
+        conteudoSemestre.innerHTML = textosSemestres[sem];
+        conteudoSemestre.style.display = 'block';
+        conteudoSemestre.focus();
+      });
+    });
+
+    // Carrinho simples
+    const botoesAdd = document.querySelectorAll('.btn-add');
+    const listaCarrinho = document.querySelector('.carrinho-lista');
+    const totalSpan = document.getElementById('total');
+    const btnFinalizar = document.getElementById('finalizar');
+
+    let carrinho = [];
+
+    function atualizarCarrinho() {
+      listaCarrinho.innerHTML = '';
+      if (carrinho.length === 0) {
+        listaCarrinho.innerHTML = '<li>Seu carrinho está vazio.</li>';
+        btnFinalizar.disabled = true;
+        totalSpan.textContent = '0,00';
+        return;
+      }
+
+      let total = 0;
+      carrinho.forEach((item, index) => {
+        total += item.preco;
+        const li = document.createElement('li');
+        li.textContent = `${item.produto} - R$ ${item.preco.toFixed(2).replace('.', ',')}`;
+        listaCarrinho.appendChild(li);
+      });
+
+      totalSpan.textContent = total.toFixed(2).replace('.', ',');
+      btnFinalizar.disabled = false;
+    }
+
+    botoesAdd.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const produto = btn.getAttribute('data-produto');
+        const preco = parseFloat(btn.getAttribute('data-preco'));
+        carrinho.push({ produto, preco });
+        atualizarCarrinho();
+      });
+    });
+
+    btnFinalizar.addEventListener('click', () => {
+      alert('Obrigado pela compra! Em breve entraremos em contato.');
+      carrinho = [];
+      atualizarCarrinho();
+    });
+
+  </script>
+
 </body>
 </html>
