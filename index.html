@@ -1,554 +1,422 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Café da Roça</title>
-  <style>
-    /* Reset básico */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f5f0e6 url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
-      background-size: cover;
-      color: #4b3b2b;
-      line-height: 1.6;
-      padding: 20px;
-      text-align: center; /* Centralizar texto geral */
-    }
-    header {
-      background: rgba(255 255 255 / 0.8);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      margin-bottom: 30px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 3rem;
-      font-weight: 900;
-      letter-spacing: 2px;
-      color: #6b4c3b;
-      font-family: 'Georgia', serif;
-      margin-bottom: 10px;
-    }
-    nav {
-      text-align: center;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 35px;
-      font-size: 1.25rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: #6b4c3b;
-      transition: color 0.3s ease;
-    }
-    nav ul li a:hover {
-      color: #b27b47;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Café da Roça - Café Artesanal</title>
+<style>
+  /* Reset básico */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    /* Menu hamburguer para mobile */
-    .hamburguer {
-      display: none;
-      cursor: pointer;
+  body {
+    font-family: 'Arial', sans-serif;
+    background: #f9f1e7; /* fundo bege suave */
+    color: #4a3b2a;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  header {
+    background: #6b4226; /* marrom escuro */
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  header h1 {
+    font-size: 3.6rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-family: 'Georgia', serif;
+  }
+
+  nav {
+    background: #a77d4b; /* marrom médio */
+    padding: 15px 0;
+    text-align: center;
+  }
+
+  nav a {
+    color: white;
+    font-size: 1.3rem;
+    margin: 0 18px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  nav a:hover {
+    color: #f9f1e7;
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  section {
+    margin-bottom: 70px;
+  }
+
+  /* Seção Sobre */
+  #sobre {
+    text-align: center;
+  }
+
+  #sobre h2 {
+    font-size: 3.2rem;
+    color: #6b4226;
+    margin-bottom: 18px;
+    font-family: 'Georgia', serif;
+  }
+
+  #sobre p {
+    font-size: 1.4rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #4a3b2a;
+  }
+
+  /* Galeria */
+  #galeria {
+    text-align: center;
+  }
+
+  #galeria h2 {
+    font-size: 3rem;
+    margin-bottom: 25px;
+    color: #6b4226;
+    font-family: 'Georgia', serif;
+  }
+
+  #galeria .imagens {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  #galeria img {
+    width: 320px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(107, 66, 38, 0.3);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  #galeria img:hover {
+    transform: scale(1.05);
+  }
+
+  /* Cardápio */
+  #cardapio {
+    text-align: center;
+  }
+
+  #cardapio h2 {
+    font-size: 3.2rem;
+    color: #6b4226;
+    margin-bottom: 30px;
+    font-family: 'Georgia', serif;
+  }
+
+  #cardapio .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .card-item {
+    background: #fff3e0;
+    border-radius: 14px;
+    box-shadow: 0 6px 15px rgba(107, 66, 38, 0.2);
+    padding: 25px 30px;
+    width: 280px;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .card-item:hover {
+    box-shadow: 0 10px 25px rgba(107, 66, 38, 0.4);
+  }
+
+  .card-item h3 {
+    font-size: 2.1rem;
+    margin-bottom: 15px;
+    color: #6b4226;
+    font-family: 'Georgia', serif;
+  }
+
+  .card-item p {
+    font-size: 1.2rem;
+    color: #4a3b2a;
+    margin-bottom: 18px;
+  }
+
+  .card-item .preco {
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: #6b4226;
+  }
+
+  /* Assinatura */
+  #assinatura {
+    background: #f9f1e7;
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  #assinatura h2 {
+    font-size: 3.2rem;
+    color: #6b4226;
+    margin-bottom: 20px;
+    font-family: 'Georgia', serif;
+  }
+
+  #assinatura p.intro {
+    font-size: 1.4rem;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: #4a3b2a;
+    line-height: 1.6;
+  }
+
+  #assinatura .planos {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .plano {
+    background: #fff3e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(107, 66, 38, 0.2);
+    padding: 30px;
+    width: 320px;
+    text-align: left;
+    color: #4a3b2a;
+  }
+
+  .plano h3 {
+    font-size: 2rem;
+    color: #6b4226;
+    margin-bottom: 10px;
+    font-family: 'Georgia', serif;
+  }
+
+  .plano p.desc {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+
+  .plano ul {
+    list-style: none;
+    padding-left: 0;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+
+  .plano ul li {
+    margin-bottom: 10px;
+    padding-left: 24px;
+    position: relative;
+  }
+
+  .plano ul li::before {
+    content: "☕";
+    position: absolute;
+    left: 0;
+    color: #6b4226;
+    font-weight: bold;
+  }
+
+  .plano ul li:nth-child(2)::before {
+    content: "🎁";
+  }
+
+  .plano ul li:nth-child(3)::before {
+    content: "💰";
+  }
+
+  .plano ul li:nth-child(4)::before {
+    content: "🚚";
+  }
+
+  .plano .preco {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #6b4226;
+    margin-bottom: 25px;
+  }
+
+  .plano button {
+    background-color: #6b4226;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+
+  .plano button:hover {
+    background-color: #593417;
+  }
+
+  /* Footer */
+  footer {
+    background: #6b4226;
+    color: white;
+    text-align: center;
+    padding: 25px 20px;
+    font-size: 1.1rem;
+  }
+
+  /* Responsividade */
+  @media (max-width: 920px) {
+    #cardapio .cards,
+    #assinatura .planos {
       flex-direction: column;
-      width: 30px;
-      margin: 0 auto;
-      gap: 6px;
-    }
-    .hamburguer div {
-      width: 100%;
-      height: 4px;
-      background-color: #6b4c3b;
-      border-radius: 3px;
-      transition: all 0.3s ease;
-    }
-    nav ul.show {
-      display: block !important;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 15px;
-    }
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-      }
-      .hamburguer {
-        display: flex;
-      }
-    }
-
-    /* Seções */
-    section {
-      background: rgba(255 255 255 / 0.85);
-      border-radius: 15px;
-      padding: 25px 35px;
-      max-width: 900px;
-      margin: 0 auto 40px auto;
-      box-shadow: 0 0 25px rgba(0,0,0,0.1);
-      text-align: center; /* Centralizar conteúdo */
-    }
-    section h2 {
-      font-family: 'Georgia', serif;
-      font-size: 2.5rem;
-      color: #6b4c3b;
-      margin-bottom: 25px;
-      letter-spacing: 1.5px;
-    }
-
-    /* Galeria */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      justify-items: center;
-    }
-    .gallery img {
-      width: 100%;
-      max-width: 280px;
-      border-radius: 10px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-
-    /* Cardápio */
-    .menu-list {
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-      align-items: center; /* Centralizar itens */
-    }
-    .menu-item {
-      display: flex;
       align-items: center;
-      gap: 25px;
-      border-bottom: 1px solid #d1bfa7;
-      padding-bottom: 15px;
-      font-size: 1.25rem;
-      max-width: 650px;
-      width: 100%;
-      justify-content: center; /* Centralizar horizontal */
     }
-    .menu-item img {
-      width: 110px;
-      height: 80px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-      flex-shrink: 0;
-    }
-    .menu-item h3 {
-      flex: 1;
-      color: #70492f;
-      font-weight: 700;
-      text-align: left;
-    }
-    .price {
-      color: #b27b47;
-      font-weight: 600;
-      min-width: 80px;
-      text-align: right;
-    }
-    .add-to-cart {
-      background-color: #b27b47;
-      border: none;
-      padding: 8px 18px;
-      border-radius: 8px;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .add-to-cart:hover {
-      background-color: #9c6b37;
-    }
-
-    /* Carrinho modal */
-    #cart-modal {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      left: 0; top: 0; width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.6);
-      overflow-y: auto;
-      padding: 60px 20px;
-    }
-    #cart-modal .modal-content {
-      background: #fff;
-      margin: auto;
-      padding: 30px 40px;
-      border-radius: 15px;
-      max-width: 500px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.2);
-      position: relative;
-      font-size: 1.2rem;
-      color: #4b3b2b;
-      text-align: center;
-    }
-    #cart-modal .close-modal {
-      position: absolute;
-      top: 15px; right: 20px;
-      font-size: 2rem;
-      font-weight: 900;
-      color: #b27b47;
-      cursor: pointer;
-      user-select: none;
-      transition: color 0.3s ease;
-    }
-    #cart-modal .close-modal:hover {
-      color: #70492f;
-    }
-    #cart-items {
-      list-style: none;
-      max-height: 250px;
-      overflow-y: auto;
-      margin-bottom: 20px;
-      border-top: 1px solid #d1bfa7;
-      border-bottom: 1px solid #d1bfa7;
-      padding: 10px 0;
-      text-align: left;
-    }
-    #cart-items li {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
-    #total {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: #70492f;
-    }
-    #checkout-btn {
-      width: 100%;
-      padding: 12px;
-      background-color: #b27b47;
-      border: none;
-      border-radius: 12px;
-      color: white;
-      font-size: 1.2rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    #checkout-btn:disabled {
-      background-color: #d9c7aa;
-      cursor: not-allowed;
-    }
-    #checkout-btn:hover:not(:disabled) {
-      background-color: #9c6b37;
-    }
-
-    /* Botão do carrinho no header */
-    #cart-btn {
-      position: fixed;
-      top: 25px;
-      right: 25px;
-      background-color: #b27b47;
-      border: none;
-      color: white;
-      padding: 12px 18px;
-      font-size: 1.2rem;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      transition: background-color 0.3s ease;
-      z-index: 10000;
-    }
-    #cart-btn:hover {
-      background-color: #9c6b37;
-    }
-
-    /* Formulários */
-    form {
-      max-width: 450px;
-      margin: 0 auto;
-      text-align: left;
-    }
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 600;
-      color: #6b4c3b;
-    }
-    input[type="text"],
-    input[type="email"],
-    textarea {
-      width: 100%;
-      padding: 10px 12px;
-      margin-bottom: 18px;
-      border: 2px solid #d1bfa7;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-family: inherit;
-      transition: border-color 0.3s ease;
-    }
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    textarea:focus {
-      border-color: #b27b47;
-      outline: none;
-    }
-    button[type="submit"] {
-      background-color: #b27b47;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 12px;
-      color: white;
-      font-weight: 700;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button[type="submit"]:hover {
-      background-color: #9c6b37;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>Café da Roça</h1>
-    <nav>
-      <div class="hamburguer" id="hamburguer">
-        <div></div><div></div><div></div>
-      </div>
-      <ul id="nav-list">
-        <li><a href="#gallery">Galeria</a></li>
-        <li><a href="#about">Sobre</a></li>
-        <li><a href="#menu">Cardápio</a></li>
-        <li><a href="#subscription">Assinatura</a></li>
-        <li><a href="#contact">Contato</a></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <h1>Café da Roça</h1>
+</header>
 
-  <button id="cart-btn" title="Ver carrinho">🛒 Carrinho</button>
+<nav>
+  <a href="#sobre">Sobre</a>
+  <a href="#galeria">Galeria</a>
+  <a href="#cardapio">Cardápio</a>
+  <a href="#assinatura">Assinatura</a>
+</nav>
 
-  <section id="gallery">
-    <h2>Galeria</h2>
-    <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=60" alt="Xícara de café" />
-      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=60" alt="Grãos de café" />
-      <img src="https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&w=600&q=60" alt="Máquina de café" />
-      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=60" alt="Café com leite" />
-    </div>
-  </section>
+<main>
 
-  <section id="about">
+  <!-- Sobre -->
+  <section id="sobre">
     <h2>Sobre o Café da Roça</h2>
-    <p>O Café da Roça oferece um café artesanal feito com grãos selecionados de pequenos produtores. Nossa missão é entregar sabor, qualidade e uma experiência acolhedora para todos os amantes do café.</p>
+    <p>
+      O Café da Roça nasce da paixão pelos pequenos produtores brasileiros e pela arte do café artesanal.
+      Nosso compromisso é levar até você cafés selecionados, colhidos manualmente e torrados com cuidado,
+      para entregar aroma, sabor e qualidade que só a dedicação faz acontecer.
+    </p>
   </section>
 
-  <section id="menu">
+  <!-- Galeria -->
+  <section id="galeria">
+    <h2>Galeria</h2>
+    <div class="imagens">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80" alt="Grãos de café" />
+      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="Xícara de café" />
+      <img src="https://images.unsplash.com/photo-1529257414770-39d9c914d8ee?auto=format&fit=crop&w=400&q=80" alt="Torrando café" />
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Café coado" />
+    </div>
+  </section>
+
+  <!-- Cardápio -->
+  <section id="cardapio">
     <h2>Cardápio</h2>
-    <div class="menu-list">
-      <div class="menu-item" data-id="1">
-        <img src="https://images.unsplash.com/photo-1510626176961-4b0f25893f9a?auto=format&fit=crop&w=200&q=60" alt="Espresso" />
-        <h3>Espresso</h3>
-        <span class="price">R$ 6,50</span>
-        <button class="add-to-cart">Adicionar</button>
+    <div class="cards">
+      <div class="card-item">
+        <h3>Café Tradicional</h3>
+        <p>Blend clássico, com sabor equilibrado e aroma intenso.</p>
+        <p class="preco">R$ 18,00 / 250g</p>
       </div>
-      <div class="menu-item" data-id="2">
-        <img src="https://images.unsplash.com/photo-1523983309734-0a7ca86f21a3?auto=format&fit=crop&w=200&q=60" alt="Café com Leite" />
-        <h3>Café com Leite</h3>
-        <span class="price">R$ 8,00</span>
-        <button class="add-to-cart">Adicionar</button>
+      <div class="card-item">
+        <h3>Café Especial da Roça</h3>
+        <p>Grãos selecionados da melhor safra, torrados lentamente.</p>
+        <p class="preco">R$ 25,00 / 250g</p>
       </div>
-      <div class="menu-item" data-id="3">
-        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=200&q=60" alt="Cappuccino" />
-        <h3>Cappuccino</h3>
-        <span class="price">R$ 10,00</span>
-        <button class="add-to-cart">Adicionar</button>
+      <div class="card-item">
+        <h3>Café Orgânico</h3>
+        <p>Produzido sem agrotóxicos, com sabor puro e natural.</p>
+        <p class="preco">R$ 28,00 / 250g</p>
       </div>
-      <div class="menu-item" data-id="4">
-        <img src="https://images.unsplash.com/photo-1464306076886-16af3a11e368?auto=format&fit=crop&w=200&q=60" alt="Mocha" />
-        <h3>Mocha</h3>
-        <span class="price">R$ 11,00</span>
-        <button class="add-to-cart">Adicionar</button>
+      <div class="card-item">
+        <h3>Café Descafeinado</h3>
+        <p>Para quem quer aproveitar o sabor sem cafeína.</p>
+        <p class="preco">R$ 26,00 / 250g</p>
       </div>
-      <div class="menu-item" data-id="5">
-        <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=200&q=60" alt="Latte" />
-        <h3>Latte</h3>
-        <span class="price">R$ 9,50</span>
-        <button class="add-to-cart">Adicionar</button>
+      <div class="card-item">
+        <h3>Café Moído na Hora</h3>
+        <p>Moagem fresca para preparo imediato.</p>
+        <p class="preco">R$ 20,00 / 250g</p>
       </div>
-      <div class="menu-item" data-id="6">
-        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=200&q=60" alt="Macchiato" />
-        <h3>Macchiato</h3>
-        <span class="price">R$ 9,00</span>
-        <button class="add-to-cart">Adicionar</button>
+      <div class="card-item">
+        <h3>Café Gourmet Exportação</h3>
+        <p>Grãos premium com perfil aromático complexo.</p>
+        <p class="preco">R$ 40,00 / 250g</p>
       </div>
     </div>
   </section>
 
-  <section id="subscription">
-    <h2>Assinatura de Café</h2>
-    <form id="subscription-form">
-      <label for="name-sub">Nome Completo</label>
-      <input type="text" id="name-sub" name="name" placeholder="Seu nome" required />
+  <!-- Assinatura -->
+  <section id="assinatura">
+    <h2>Assinatura de Café Artesanal</h2>
+    <p class="intro">
+      Assine o melhor café artesanal do Brasil, direto de pequenos produtores para sua casa. Escolha entre nossos planos semestrais e aproveite cafés selecionados, exclusivos e fresquinhos entregues todo mês.
+    </p>
 
-      <label for="email-sub">Email</label>
-      <input type="email" id="email-sub" name="email" placeholder="Seu melhor email" required />
+    <div class="planos">
+      <!-- Plano 1º Semestre -->
+      <div class="plano">
+        <h3>1º Semestre</h3>
+        <p class="desc">
+          6 meses de assinatura, com entregas mensais e cafés variados da safra.
+        </p>
+        <ul>
+          <li>1 pacote de café artesanal por mês (250g)</li>
+          <li>Brindes exclusivos a cada 3 meses</li>
+          <li>Desconto especial para renovação</li>
+          <li>Frete grátis para todo o Brasil</li>
+        </ul>
+        <p class="preco">R$ 180,00 por semestre</p>
+        <button>Assinar 1º Semestre</button>
+      </div>
 
-      <button type="submit">Assinar</button>
-    </form>
-  </section>
-
-  <section id="contact">
-    <h2>Contato</h2>
-    <form id="contact-form">
-      <label for="name-contact">Nome</label>
-      <input type="text" id="name-contact" name="name" placeholder="Seu nome" required />
-
-      <label for="email-contact">Email</label>
-      <input type="email" id="email-contact" name="email" placeholder="Seu melhor email" required />
-
-      <label for="message-contact">Mensagem</label>
-      <textarea id="message-contact" name="message" rows="5" placeholder="Escreva sua mensagem" required></textarea>
-
-      <button type="submit">Enviar</button>
-    </form>
-  </section>
-
-  <!-- Modal do carrinho -->
-  <div id="cart-modal">
-    <div class="modal-content">
-      <span class="close-modal">&times;</span>
-      <h2>Seu Carrinho</h2>
-      <ul id="cart-items"></ul>
-      <p id="total">Total: R$ 0,00</p>
-      <button id="checkout-btn" disabled>Finalizar Compra</button>
+      <!-- Plano 2º Semestre -->
+      <div class="plano">
+        <h3>2º Semestre</h3>
+        <p class="desc">
+          Aproveite os cafés especiais da segunda safra do ano, direto para você.
+        </p>
+        <ul>
+          <li>1 pacote de café artesanal por mês (250g)</li>
+          <li>Brindes exclusivos a cada 3 meses</li>
+          <li>Desconto especial para renovação</li>
+          <li>Frete grátis para todo o Brasil</li>
+        </ul>
+        <p class="preco">R$ 190,00 por semestre</p>
+        <button>Assinar 2º Semestre</button>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <script>
-    // Menu hamburguer toggle para mobile
-    const hamburguer = document.getElementById('hamburguer');
-    const navList = document.getElementById('nav-list');
-    hamburguer.addEventListener('click', () => {
-      navList.classList.toggle('show');
-    });
+</main>
 
-    // Carrinho
-    const cartBtn = document.getElementById('cart-btn');
-    const modal = document.getElementById('cart-modal');
-    const closeModal = document.querySelector('.close-modal');
-    const cartItemsUl = document.getElementById('cart-items');
-    const totalPriceEl = document.getElementById('total');
-    const checkoutBtn = document.getElementById('checkout-btn');
-
-    let cart = [];
-
-    function addToCart(id, name, price) {
-      const existingItem = cart.find(item => item.id === id);
-      if (existingItem) {
-        existingItem.quantity++;
-      } else {
-        cart.push({ id, name, price, quantity: 1 });
-      }
-      renderCartItems();
-      modal.style.display = 'block';
-    }
-
-    function renderCartItems() {
-      cartItemsUl.innerHTML = '';
-      if (cart.length === 0) {
-        cartItemsUl.innerHTML = '<li>Seu carrinho está vazio.</li>';
-        totalPriceEl.textContent = 'Total: R$ 0,00';
-        checkoutBtn.disabled = true;
-        return;
-      }
-
-      let total = 0;
-      cart.forEach(item => {
-        total += item.price * item.quantity;
-        const li = document.createElement('li');
-        li.textContent = `${item.name} x${item.quantity}`;
-        const spanPrice = document.createElement('span');
-        spanPrice.textContent = `R$ ${(item.price * item.quantity).toFixed(2)}`;
-        li.appendChild(spanPrice);
-        cartItemsUl.appendChild(li);
-      });
-      totalPriceEl.textContent = `Total: R$ ${total.toFixed(2)}`;
-      checkoutBtn.disabled = false;
-    }
-
-    cartBtn.addEventListener('click', () => {
-      modal.style.display = 'block';
-    });
-
-    closeModal.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
-
-    window.addEventListener('click', e => {
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
-    });
-
-    checkoutBtn.addEventListener('click', () => {
-      alert('Compra finalizada! Obrigado por comprar conosco :)');
-      cart = [];
-      modal.style.display = 'none';
-      renderCartItems();
-    });
-
-    // Botões "Adicionar" no cardápio
-    const addButtons = document.querySelectorAll('.add-to-cart');
-
-    const menuItems = {
-      1: { name: 'Espresso', price: 6.5 },
-      2: { name: 'Café com Leite', price: 8.0 },
-      3: { name: 'Cappuccino', price: 10.0 },
-      4: { name: 'Mocha', price: 11.0 },
-      5: { name: 'Latte', price: 9.5 },
-      6: { name: 'Macchiato', price: 9.0 }
-    };
-
-    addButtons.forEach(button => {
-      button.addEventListener('click', e => {
-        const menuItem = e.target.closest('.menu-item');
-        const id = menuItem.getAttribute('data-id');
-        const item = menuItems[id];
-        addToCart(id, item.name, item.price);
-      });
-    });
-
-    // Formulários
-
-    // Assinatura
-    const subscriptionForm = document.getElementById('subscription-form');
-    subscriptionForm.addEventListener('submit', e => {
-      e.preventDefault();
-      alert('Obrigado por assinar nosso café! Entraremos em contato via email.');
-      subscriptionForm.reset();
-    });
-
-    // Contato
-    const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', e => {
-      e.preventDefault();
-      alert('Mensagem enviada com sucesso! Responderemos em breve.');
-      contactForm.reset();
-    });
-  </script>
+<footer>
+  Café da Roça &copy; 2025 - Todos os direitos reservados.
+</footer>
 
 </body>
 </html>
