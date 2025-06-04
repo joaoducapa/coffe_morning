@@ -1,172 +1,184 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Café da Roça</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <style>
-    /* Reset e base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Crimson Text', serif;
-    }
-
-    body {
-      background: url('papel-kraft-textura.jpg') repeat;
-      color: #3e2f1c;
-    }
-
-    header {
-      background-color: rgba(255, 248, 240, 0.9);
-      padding: 2rem;
-      text-align: center;
-      border-bottom: 4px dashed #b68d40;
-    }
-
-    header h1 {
-      font-size: 3rem;
-    }
-
-    nav {
-      background: #f4e4c1;
-      padding: 1rem;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      border-bottom: 2px solid #b68d40;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #5b3e1d;
-      font-size: 1.2rem;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #b68d40;
-    }
-
-    .sobre, .galeria, .cardapio, .contato, .carrinho {
-      max-width: 1100px;
-      margin: 3rem auto;
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    .galeria img {
-      width: 100%;
-      border-radius: 8px;
-      margin-top: 1rem;
-    }
-
-    .cardapio ul {
-      list-style: none;
-      margin-top: 1rem;
-    }
-
-    .cardapio li {
-      padding: 0.5rem 0;
-      border-bottom: 1px dashed #ccc;
-    }
-
-    .carrinho button {
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background-color: #b68d40;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .carrinho button:hover {
-      background-color: #8f6b2b;
-    }
-
-    footer {
-      background-color: #f4e4c1;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      border-top: 2px solid #b68d40;
-    }
-
-    /* Layouts adicionais serão inseridos abaixo para completar 1700 linhas */
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Café da Roça</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 </head>
-
 <body>
-  <header>
-    <h1>Café da Roça</h1>
-    <p>Sabores artesanais direto do campo</p>
-  </header>
+<header>
+    <div class="container header-container">
+        <h1 class="logo">Café da Roça</h1>
+        <nav class="nav-menu" id="nav-menu">
+            <ul>
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                <li><a href="#cardapio" class="nav-link">Cardápio</a></li>
+                <li><a href="#galeria" class="nav-link">Galeria</a></li>
+                <li><a href="#assinaturas" class="nav-link">Assinaturas</a></li>
+                <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+                <li><a href="#contato" class="nav-link">Contato</a></li>
+                <li><button id="cart-btn" class="cart-btn">Carrinho (0)</button></li>
+            </ul>
+        </nav>
+        <button class="hamburguer" id="hamburguer">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
 
-  <nav>
-    <a href="#sobre">Sobre</a>
-    <a href="#galeria">Galeria</a>
-    <a href="#cardapio">Cardápio</a>
-    <a href="#contato">Contato</a>
-    <a href="#carrinho">Carrinho</a>
-  </nav>
+<main>
+    <section id="home" class="section home-section">
+        <div class="container home-content">
+            <div class="text-content">
+                <h2>Bem-vindo ao Café da Roça</h2>
+                <p>O melhor café artesanal direto da fazenda para sua xícara.</p>
+                <a href="#cardapio" class="btn">Ver Cardápio</a>
+            </div>
+            <div class="image-content">
+                <img src="images/cafe-home.jpg" alt="Café artesanal" />
+            </div>
+        </div>
+    </section>
 
-  <section class="sobre" id="sobre">
-    <h2>Sobre Nós</h2>
-    <p>O Café da Roça nasceu do amor pela tradição, pela agricultura familiar e pelo sabor genuíno do café artesanal. Trabalhamos diretamente com pequenos produtores de diversas regiões do Brasil, garantindo qualidade, sustentabilidade e histórias incríveis em cada grão.</p>
-  </section>
+    <section id="sobre" class="section about-section">
+        <div class="container about-content">
+            <div class="image-content">
+                <img src="images/sobre-cafe.jpg" alt="Nossa história" />
+            </div>
+            <div class="text-content">
+                <h2>Sobre o Café da Roça</h2>
+                <p>Fundado em 2023, somos apaixonados por oferecer cafés artesanais de pequenos produtores, valorizando a tradição e o sabor único da roça.</p>
+            </div>
+        </div>
+    </section>
 
-  <section class="galeria" id="galeria">
-    <h2>Galeria</h2>
-    <img src="fazenda.jpg" alt="Fazenda produtora de café">
-    <img src="graos.jpg" alt="Grãos de café artesanal">
-    <img src="xicara.jpg" alt="Xícara de café fresco">
-  </section>
+    <section id="cardapio" class="section menu-section">
+        <div class="container">
+            <h2>Cardápio</h2>
+            <div class="menu-items">
+                <!-- Cards do cardápio -->
+                <article class="menu-item">
+                    <img src="images/espresso.jpg" alt="Café espresso" />
+                    <h3>Espresso Tradicional</h3>
+                    <p>Concentrado, encorpado e perfeito para quem gosta do café puro.</p>
+                    <span class="price">R$7,00</span>
+                    <button class="add-to-cart" data-name="Espresso Tradicional" data-price="7">Adicionar</button>
+                </article>
+                <article class="menu-item">
+                    <img src="images/cappuccino.jpg" alt="Cappuccino" />
+                    <h3>Cappuccino</h3>
+                    <p>Espresso com leite cremoso e espuma, uma delícia para o café da manhã.</p>
+                    <span class="price">R$10,00</span>
+                    <button class="add-to-cart" data-name="Cappuccino" data-price="10">Adicionar</button>
+                </article>
+                <article class="menu-item">
+                    <img src="images/americano.jpg" alt="Café Americano" />
+                    <h3>Americano</h3>
+                    <p>Café filtrado, suave e refrescante, ideal para qualquer hora do dia.</p>
+                    <span class="price">R$8,00</span>
+                    <button class="add-to-cart" data-name="Americano" data-price="8">Adicionar</button>
+                </article>
+                <!-- Pode adicionar mais aqui -->
+            </div>
+        </div>
+    </section>
 
-  <section class="cardapio" id="cardapio">
-    <h2>Nosso Cardápio</h2>
-    <ul>
-      <li>Café coado na hora - R$7,00</li>
-      <li>Capuccino artesanal - R$10,00</li>
-      <li>Expresso duplo - R$9,00</li>
-      <li>Latte com leite da fazenda - R$11,00</li>
-      <li>Bolo de fubá com erva-doce - R$6,00</li>
-      <li>Broa de milho - R$5,00</li>
-    </ul>
-  </section>
+    <section id="galeria" class="section gallery-section">
+        <div class="container">
+            <h2>Galeria</h2>
+            <div class="gallery-grid">
+                <img src="images/galeria1.jpg" alt="Foto 1" />
+                <img src="images/galeria2.jpg" alt="Foto 2" />
+                <img src="images/galeria3.jpg" alt="Foto 3" />
+                <img src="images/galeria4.jpg" alt="Foto 4" />
+            </div>
+        </div>
+    </section>
 
-  <section class="contato" id="contato">
-    <h2>Contato</h2>
-    <p>Email: contato@cafedaroca.com</p>
-    <p>Telefone: (31) 99999-9999</p>
-    <p>Endereço: Estrada Real, KM 12 - Interior de Minas Gerais</p>
-  </section>
+    <section id="assinaturas" class="section subscription-section">
+        <div class="container">
+            <h2>Assinatura de Café</h2>
+            <p>Receba todo mês cafés selecionados direto da roça para sua casa.</p>
+            <form id="subscription-form">
+                <input type="text" placeholder="Nome" required />
+                <input type="email" placeholder="Email" required />
+                <select required>
+                    <option value="">Escolha o plano</option>
+                    <option value="mensal">Mensal - R$60</option>
+                    <option value="semanal">Semanal - R$20</option>
+                </select>
+                <button type="submit" class="btn">Assinar</button>
+            </form>
+        </div>
+    </section>
 
-  <section class="carrinho" id="carrinho">
-    <h2>Carrinho de Compras</h2>
-    <p>Seu carrinho está vazio.</p>
-    <button>Finalizar Compra</button>
-  </section>
+    <section id="depoimentos" class="section testimonials-section">
+        <div class="container">
+            <h2>Depoimentos</h2>
+            <div class="testimonial-cards">
+                <article class="testimonial-card">
+                    <p>"O melhor café que já provei, super fresco e saboroso!"</p>
+                    <h4>- Ana Silva</h4>
+                </article>
+                <article class="testimonial-card">
+                    <p>"Entrega rápida e café de altíssima qualidade. Recomendo!"</p>
+                    <h4>- João Pedro</h4>
+                </article>
+                <article class="testimonial-card">
+                    <p>"Assino todo mês, não fico sem café na casa. Amo!"</p>
+                    <h4>- Maria Clara</h4>
+                </article>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Café da Roça. Todos os direitos reservados.</p>
-  </footer>
+    <section id="contato" class="section contact-section">
+        <div class="container">
+            <h2>Contato & Localização</h2>
+            <div class="contact-content">
+                <form id="contact-form">
+                    <input type="text" placeholder="Nome" required />
+                    <input type="email" placeholder="Email" required />
+                    <textarea placeholder="Mensagem" rows="5" required></textarea>
+                    <button type="submit" class="btn">Enviar</button>
+                </form>
+                <div class="map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.791972304496!2d-46.64694568447979!3d-23.564013767784393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59cbd1f20f59%3A0x5a7e17d2904e3f48!2sIbirapuera%20Park!5e0!3m2!1spt-BR!2sbr!4v1618905767882!5m2!1spt-BR!2sbr"
+                        width="400"
+                        height="300"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
-  <script>
-    // Código JavaScript para carrinho (simplificado)
-    const button = document.querySelector(".carrinho button");
-    button.addEventListener("click", () => {
-      alert("Compra finalizada! Obrigado pelo seu pedido.");
-    });
-  </script>
+<!-- Modal Carrinho -->
+<div id="cart-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" id="close-cart">&times;</span>
+        <h2>Carrinho de Compras</h2>
+        <ul id="cart-items"></ul>
+        <p class="total-price">Total: R$ <span id="total-price">0.00</span></p>
+        <button id="checkout-btn" class="btn">Finalizar Compra</button>
+    </div>
+</div>
+
+<footer>
+    <div class="container footer-container">
+        <p>© 2025 Café da Roça. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
-
 </html>
